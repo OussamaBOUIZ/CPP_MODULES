@@ -3,10 +3,11 @@
 class	PhoneBook {
 	private:
 		Contact 	contacts[8];
+		int			lastEmptyElement(void);
 		void		addContact(void);
-		void		displaySingleContact(Contact contact, int index);
+		void		displaySingleContact(int index);
 		void		displayContacts(void);	
-		void		getContact(void);
+		void		getContact();
 	public:
 		std::string promptUser(void);
 		void		executeCommand(std::string command);

@@ -1,6 +1,5 @@
 #include "PhoneBook.hpp"
 
-int x = 100;
 int	main(void)
 {
 	/*
@@ -9,7 +8,11 @@ int	main(void)
 		so first we'll have to instantiate our PhoneBook.
 	*/
 	PhoneBook	awesomePhoneBook;
-	std::string command = awesomePhoneBook.promptUser();
-	awesomePhoneBook.executeCommand(command);
+	while (true)
+	{
+		std::string command = awesomePhoneBook.promptUser();
+		awesomePhoneBook.executeCommand(command);
+		std::cout << "----------------" << std::endl;
+	}
 	return (0);
 }
