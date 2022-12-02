@@ -5,6 +5,15 @@
 #include "PhoneBook.hpp"
 # define CONTACT_SIZE 8
 
+int	isnumeric(std::string number)
+{
+	for (int i = 0; number[i]; i++)
+		if (!isdigit(number[i]))
+			return (0);
+	return (1);
+}
+
+
 int	PhoneBook::lastEmptyElement(void)
 {
 	int	i;
@@ -28,9 +37,9 @@ void	PhoneBook::addContact(void)
 	getline(std::cin, line);
 	contacts[index].lastName = line;
 	getline(std::cin, line);
+	contacts[index].nickName = line;
+	getline(std::cin, line);
 	contacts[index].phoneNumber = line;
-	// getline(std::cin, line);
-	// contacts[index].nickName = line;
 	getline(std::cin, line);
 	contacts[index].darkestSecret = line;
 }
@@ -52,20 +61,39 @@ void	PhoneBook::displaySingleContact(int index)
 	std::cout << std::endl;
 }
 
-void	PhoneBook::displayContacts(void)
+int	PhoneBook::displayContacts(void)
 {
 	if (contacts[0].firstName.empty())
+	{
 		std::cout << "PHONEBOOK IS EMPTY" << std::endl;
+		return (1);
+	}
 	for (int i = 0; i < CONTACT_SIZE and !contacts[i].firstName.empty(); i++)
 		displaySingleContact(i) ;
+	return (0);
 }
 
 void	PhoneBook::getContact()
 {
-	std::string index;
+	std::string indexFromUser;
+	int			index;
 
-	getline(std::cin, index);
-	displaySingleContact(stoi(index));
+	index = 9;
+	do
+	{
+		getline(std::cin, indexFromUser);
+		if (indexFromUser == "EXIT") exit(0);
+		if (!isnumeric(indexFromUser))
+			std::cout << "Please enter a number 😁" << std::endl;
+		else
+		{
+			index = stoi(indexFromUser);
+			if (index > lastEmptyElement() or index < 0)
+				std::cout << "Please enter a number in this range [0 - "<< lastEmptyElement() - 1 << "] 😁" << std::endl;
+			else
+				displaySingleContact(index);
+		}
+	} while (!(index >= 0 and index < lastEmptyElement()));
 }
 
 std::string PhoneBook::promptUser(void)
@@ -87,7 +115,8 @@ void	PhoneBook::executeCommand(std::string command)
 		addContact();
 	else if (command == "SEARCH")
 	{
-		displayContacts();
+		if (displayContacts())
+			return ;
 		getContact();
 	}
 	else

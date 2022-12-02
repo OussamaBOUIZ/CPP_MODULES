@@ -6,7 +6,7 @@ class	PhoneBook {
 		int			lastEmptyElement(void);
 		void		addContact(void);
 		void		displaySingleContact(int index);
-		void		displayContacts(void);	
+		int			displayContacts(void);	
 		void		getContact();
 	public:
 		std::string promptUser(void);

@@ -16,3 +16,8 @@ int	main(void)
 	}
 	return (0);
 }
+
+
+/*
+	LET'S UNDERSTAND WHY THE ABORT HAPPENDED
+*/
