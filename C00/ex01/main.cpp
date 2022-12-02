@@ -8,6 +8,7 @@ int	main(void)
 		so first we'll have to instantiate our PhoneBook.
 	*/
 	PhoneBook	awesomePhoneBook;
+	// We'll be prompting the use as long as he doesn't type EXIT
 	while (true)
 	{
 		std::string command = awesomePhoneBook.promptUser();
@@ -16,8 +17,3 @@ int	main(void)
 	}
 	return (0);
 }
-
-
-/*
-	LET'S UNDERSTAND WHY THE ABORT HAPPENDED
-*/

@@ -5,15 +5,6 @@
 #include "PhoneBook.hpp"
 # define CONTACT_SIZE 8
 
-int	isnumeric(std::string number)
-{
-	for (int i = 0; number[i]; i++)
-		if (!isdigit(number[i]))
-			return (0);
-	return (1);
-}
-
-
 int	PhoneBook::lastEmptyElement(void)
 {
 	int	i;
@@ -31,7 +22,11 @@ void	PhoneBook::addContact(void)
 	std::string line;
 	int			index;
 
-	index = lastEmptyElement();
+	if (lastEmptyElement() > 7)
+		index = 7;
+	else
+		index = lastEmptyElement();
+	std::cout << index << std::endl;
 	getline(std::cin, line);
 	contacts[index].firstName = line;
 	getline(std::cin, line);
@@ -48,16 +43,16 @@ void	PhoneBook::displaySingleContact(int index)
 {
 	std::cout << std::setw(10);
 	std::cout << index;
-	std::cout << " |";
+	std::cout << "|";
 	std::cout << std::setw(10);
 	std::cout << contacts[index].firstName;
-	std::cout << " |";
+	std::cout << "|";
 	std::cout << std::setw(10);
 	std::cout << contacts[index].lastName;
-	std::cout << " |";
+	std::cout << "|";
 	std::cout << std::setw(10);
 	std::cout << contacts[index].nickName;
-	std::cout << " |";
+	std::cout << "|";
 	std::cout << std::endl;
 }
 
@@ -71,6 +66,15 @@ int	PhoneBook::displayContacts(void)
 	for (int i = 0; i < CONTACT_SIZE and !contacts[i].firstName.empty(); i++)
 		displaySingleContact(i) ;
 	return (0);
+}
+
+void	PhoneBook::displayAllContactField(int index)
+{
+	std::cout << "First name: " << contacts[index].firstName << std::endl;
+	std::cout << "Last  name: " << contacts[index].lastName << std::endl;
+	std::cout << "Nick  name: " << contacts[index].nickName << std::endl;
+	std::cout << "Phone Number: " << contacts[index].phoneNumber << std::endl;
+	std::cout << "Darkest Address: " << contacts[index].darkestSecret << std::endl;
 }
 
 void	PhoneBook::getContact()
@@ -91,7 +95,7 @@ void	PhoneBook::getContact()
 			if (index > lastEmptyElement() or index < 0)
 				std::cout << "Please enter a number in this range [0 - "<< lastEmptyElement() - 1 << "] 😁" << std::endl;
 			else
-				displaySingleContact(index);
+				displayAllContactField(index);
 		}
 	} while (!(index >= 0 and index < lastEmptyElement()));
 }

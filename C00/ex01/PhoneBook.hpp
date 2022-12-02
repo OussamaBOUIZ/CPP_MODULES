@@ -6,9 +6,12 @@ class	PhoneBook {
 		int			lastEmptyElement(void);
 		void		addContact(void);
 		void		displaySingleContact(int index);
+		void		displayAllContactField(int index);
 		int			displayContacts(void);	
 		void		getContact();
 	public:
 		std::string promptUser(void);
 		void		executeCommand(std::string command);
 };
+
+int	isnumeric(std::string number);
