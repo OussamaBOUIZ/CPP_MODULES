@@ -21,17 +21,11 @@ void	PhoneBook::addContact(void)
 		index = 7;
 	else
 		index = lastEmptyElement();
-	std::cout << index << std::endl;
-	getline(std::cin, line);
-	contacts[index].firstName = line;
-	getline(std::cin, line);
-	contacts[index].lastName = line;
-	getline(std::cin, line);
-	contacts[index].nickName = line;
-	getline(std::cin, line);
-	contacts[index].phoneNumber = line;
-	getline(std::cin, line);
-	contacts[index].darkestSecret = line;
+	contacts[index].firstName = getValidInput();
+	contacts[index].lastName = getValidInput();
+	contacts[index].nickName = getValidInput();
+	contacts[index].phoneNumber = getValidInput();
+	contacts[index].darkestSecret = getValidInput();
 }
 
 void	PhoneBook::displaySingleContact(int index)

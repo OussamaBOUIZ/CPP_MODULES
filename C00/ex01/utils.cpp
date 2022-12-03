@@ -18,3 +18,17 @@ void	print_field(std::string field)
 	}
 	std::cout << field;
 }
+
+std::string	getValidInput(void)
+{
+	std::string validInput;
+	do
+	{
+		getline(std::cin, validInput);
+		if (!validInput.empty())
+			return (validInput);
+		else
+			std::cout << "Type something!!" << std::endl;
+	}
+	while (true);
+}

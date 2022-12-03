@@ -19,5 +19,6 @@ class	PhoneBook {
 		void		executeCommand(std::string command);
 };
 
-int		isnumeric(std::string number);
-void	print_field(std::string field);
+int			isnumeric(std::string number);
+void		print_field(std::string field);
+std::string	getValidInput(void);
