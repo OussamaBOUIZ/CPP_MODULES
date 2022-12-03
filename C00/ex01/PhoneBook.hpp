@@ -1,4 +1,9 @@
 #include "Contact.hpp"
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <unistd.h>
+# define CONTACT_SIZE 8
 
 class	PhoneBook {
 	private:
@@ -14,4 +19,5 @@ class	PhoneBook {
 		void		executeCommand(std::string command);
 };
 
-int	isnumeric(std::string number);
+int		isnumeric(std::string number);
+void	print_field(std::string field);

@@ -14,5 +14,5 @@ class Contact {
 /*
 	If the text is longer than the column, 
 	it must be truncated and the last displayable 
-	character must be replaced by adot (’.’)
+	character must be replaced by a dot (’.’)
 */

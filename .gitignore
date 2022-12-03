@@ -2,4 +2,6 @@
 *.o
 .LEARN
 *.pdf
+phonebook
+megaphone
 

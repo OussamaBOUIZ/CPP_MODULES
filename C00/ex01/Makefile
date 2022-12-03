@@ -1,7 +1,7 @@
 NAME = phonebook
-CC = c++ -Wall -Wextra -Werror -std=c++98
+CC = c++ -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 RM = rm -rf
-SOURCES = PhoneBook.cpp main.cpp
+SOURCES = PhoneBook.cpp utils.cpp PhoneBook_private.cpp main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 
