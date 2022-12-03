@@ -8,7 +8,7 @@ int	isnumeric(std::string number)
 	return (1);
 }
 
-void	print_field(std::string field)
+void	printField(std::string field)
 {
 	std::cout << std::setw(10);
 	if (field.length() > 10)
@@ -19,16 +19,17 @@ void	print_field(std::string field)
 	std::cout << field;
 }
 
-std::string	getValidInput(void)
+std::string	getValidInput(std::string fieldName)
 {
 	std::string validInput;
 	do
 	{
+		std::cout << "Enter " << fieldName<< " : ";
 		getline(std::cin, validInput);
 		if (!validInput.empty())
 			return (validInput);
 		else
-			std::cout << "Type something!!" << std::endl;
+			continue;
 	}
 	while (true);
 }

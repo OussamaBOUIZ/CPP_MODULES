@@ -7,7 +7,7 @@ int	main(void)
 		The function responsible for this would be a member function of the class PhoneBook
 		so first we'll have to instantiate our PhoneBook.
 	*/
-	PhoneBook	awesomePhoneBook;
+	PhoneBook	awesomePhoneBook = PhoneBook();
 	// We'll be prompting the use as long as he doesn't type EXIT
 	while (true)
 	{

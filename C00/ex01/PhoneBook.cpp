@@ -3,7 +3,6 @@
 std::string PhoneBook::promptUser(void)
 {
 	std::string	line;
-
 	while (true)
 	{
 		std::cout << "---ENTER ONE OF THESE [ADD, SEARCH or EXIT]---" << std::endl;
@@ -26,3 +25,9 @@ void	PhoneBook::executeCommand(std::string command)
 	else
 		exit(0);
 }
+
+PhoneBook::PhoneBook(void)
+{
+	orderOfNextContact = 0;
+}
+

@@ -15,32 +15,31 @@ void	PhoneBook::addContact(void)
 {
 	// Now we'll make this function just print the entry it gets	
 	std::string line;
-	int			index;
+	int			idx;
 
-	if (lastEmptyElement() > 7)
-		index = 7;
-	else
-		index = lastEmptyElement();
-	contacts[index].firstName = getValidInput();
-	contacts[index].lastName = getValidInput();
-	contacts[index].nickName = getValidInput();
-	contacts[index].phoneNumber = getValidInput();
-	contacts[index].darkestSecret = getValidInput();
+	std::cout << "the orderOfNextContact is " << orderOfNextContact << std::endl;
+	idx = orderOfNextContact % 8;
+	contacts[idx].firstName = getValidInput("First Name");
+	contacts[idx].lastName = getValidInput("Last Name");
+	contacts[idx].nickName = getValidInput("Nick Name");
+	contacts[idx].phoneNumber = getValidInput("Phone Number");
+	contacts[idx].darkestSecret = getValidInput("Darkest Secret");
+	orderOfNextContact++;
 }
 
 void	PhoneBook::displaySingleContact(int index)
 {
 	std::cout << std::setw(10);
-	std::cout << index;
+	std::cout << index + 1;
 	std::cout << "|";
 	std::cout << std::setw(10);
-	print_field(contacts[index].firstName);
+	printField(contacts[index].firstName);
 	std::cout << "|";
 	std::cout << std::setw(10);
-	print_field(contacts[index].lastName);
+	printField(contacts[index].lastName);
 	std::cout << "|";
 	std::cout << std::setw(10);
-	print_field(contacts[index].nickName);
+	printField(contacts[index].nickName);
 	std::cout << "|";
 	std::cout << std::endl;
 }
@@ -76,12 +75,12 @@ void	PhoneBook::getContact()
 	{
 		getline(std::cin, indexFromUser);
 		if (indexFromUser == "EXIT") exit(0);
-		if (!isnumeric(indexFromUser))
+		if (!isnumeric(indexFromUser) or indexFromUser.empty())
 			std::cout << "Please enter a number 😁" << std::endl;
 		else
 		{
 			index = stoi(indexFromUser);
-			if (index > lastEmptyElement() or index < 0)
+			if (index >= lastEmptyElement() or index < 0)
 				std::cout << "Please enter a number in this range [0 - "<< lastEmptyElement() - 1 << "] 😁" << std::endl;
 			else
 				displayAllContactField(index);
