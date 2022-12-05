@@ -1,50 +1,91 @@
 #include "Account.hpp"
 #include <iostream>
 
-/*
-	Your first task is to recreate  a lost file.
-	Ah Okay, so know we have the following files which are: Account.hpp, tests.cpp and file.log
-	the missing piece is the Account.cpp in which resides the implementation of the Account Class
-	So I'll have to figure out how to fix this loss of the file
-	We could use the log file in order to understand how the Account class was implemented.
-*/
-
-// *** OK LET'S UNDERSTAND FIRST THE MAIN IN test.cpp
-
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
 int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
+/* CONSTRUCTOR */
 Account::Account(int initial_deposit)
 {
 	_amount = initial_deposit;
+	_accountIndex = _nbAccounts;
+	_nbDeposits = 0;
+	_nbWithdrawals = 0;
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "created" << std::endl;
+	_totalAmount += _amount;
+	_nbAccounts++;
 }
 
+/* DECONSTRUCTOR */
 Account::~Account( void )
 {
-	return ;
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "closed" << std::endl;
 }
 
-void	Account::displayStatus(void) const
-{
-	bool fact;
-
-	fact = true;
-	if (fact)
-		std::cout << "created ";
-	else
-		std::cout << "refused ";
-}
 void	Account::makeDeposit( int deposit )
 {
-	std::cout << deposit << std::endl;
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "p_amount:" << _amount << ";";
+	_amount += deposit;
+	_nbDeposits++;
+	_totalNbDeposits++;
+	std::cout << "deposit:" << deposit << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "nb_deposists:" << _nbDeposits << std::endl;
+	_totalAmount += _amount;
+	// std::cout << "index:" << _accountIndex << ";";
+	// std::cout << "amount:" << _amount << ";";
+	
+	return ;
 }
 
 bool	Account::makeWithdrawal( int withdrawal )
 {
-	std::cout << withdrawal << std::endl;
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "p_amount:" << _amount << ";";
+	if (_amount < withdrawal)
+	{
+		std::cout << "withdrawal:refused" << std::endl;
+		return (false);
+	}
+	_amount -= withdrawal;
+	_nbWithdrawals++;
+	_totalNbWithdrawals++;
+	std::cout << "withdrawal:" << withdrawal << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "nb_withdrawals:" << _nbWithdrawals << std::endl;
+	_totalAmount += _amount;
 	return (true);
+}
+
+/* DISPLAYING FUNCTIONS*/
+void	Account::_displayTimestamp( void )
+{
+	//This should be modified it's not valid for now
+	std::cout <<"[19920104_091532] ";
+}
+
+void	Account::displayStatus( void ) const
+{
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "deposits:" << _nbDeposits << ";";
+	std::cout << "withdrawals:" << _nbWithdrawals;
+	std::cout << std::endl;
+	// std::cout << "created" << std::endl;
+	// _totalAmount += _amount;
+	return ;
 }
 
 void	Account::displayAccountsInfos( void )
@@ -54,4 +95,6 @@ void	Account::displayAccountsInfos( void )
 	std::cout << "total:" << _totalAmount << ";";
 	std::cout << "deposits:" << _totalNbDeposits << ";";
 	std::cout << "withdrawals:" << _totalNbWithdrawals << std::endl;
+	_totalAmount = 0;
+	return ;
 }

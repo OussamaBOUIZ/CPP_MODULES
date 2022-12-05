@@ -11,10 +11,11 @@
 #include <algorithm>
 #include <functional>
 #include "Account.hpp"
-
+//to be removed
+#include <iostream>
 
 int		main( void ) {
-
+	
 	typedef std::vector<Account::t>							  accounts_t;
 	typedef std::vector<int>								  ints_t;
 	typedef std::pair<accounts_t::iterator, ints_t::iterator> acc_int_t;
@@ -37,17 +38,24 @@ int		main( void ) {
 	ints_t::iterator	wit_begin	= withdrawals.begin();
 	ints_t::iterator	wit_end		= withdrawals.end();
 
+	//To be removed
+	std::cout << std::endl;
 	Account::displayAccountsInfos();
+	//To be removed
+	std::cout << std::endl;
 	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
 
 	for ( acc_int_t it( acc_begin, dep_begin );
 		  it.first != acc_end && it.second != dep_end;
 		  ++(it.first), ++(it.second) ) {
-
 		(*(it.first)).makeDeposit( *(it.second) );
 	}
 
+	//To be removed
+	std::cout << std::endl;
 	Account::displayAccountsInfos();
+	//To be removed
+	std::cout << std::endl;
 	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
 
 	for ( acc_int_t it( acc_begin, wit_begin );
@@ -57,7 +65,11 @@ int		main( void ) {
 		(*(it.first)).makeWithdrawal( *(it.second) );
 	}
 
+	//To be removed
+	std::cout << std::endl;
 	Account::displayAccountsInfos();
+	//To be removed
+	std::cout << std::endl;
 	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
 
 	return 0;
