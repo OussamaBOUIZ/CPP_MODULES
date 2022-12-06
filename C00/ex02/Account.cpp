@@ -1,5 +1,7 @@
 #include "Account.hpp"
 #include <iostream>
+#include <ctime>
+#include <time.h>
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
@@ -42,9 +44,6 @@ void	Account::makeDeposit( int deposit )
 	std::cout << "amount:" << _amount << ";";
 	std::cout << "nb_deposists:" << _nbDeposits << std::endl;
 	_totalAmount += _amount;
-	// std::cout << "index:" << _accountIndex << ";";
-	// std::cout << "amount:" << _amount << ";";
-	
 	return ;
 }
 
@@ -56,6 +55,7 @@ bool	Account::makeWithdrawal( int withdrawal )
 	if (_amount < withdrawal)
 	{
 		std::cout << "withdrawal:refused" << std::endl;
+		_totalAmount+=_amount;
 		return (false);
 	}
 	_amount -= withdrawal;
@@ -71,8 +71,14 @@ bool	Account::makeWithdrawal( int withdrawal )
 /* DISPLAYING FUNCTIONS*/
 void	Account::_displayTimestamp( void )
 {
-	//This should be modified it's not valid for now
-	std::cout <<"[19920104_091532] ";
+	time_t	currTime;
+	struct tm *timeStruct;
+	char	timeString[20];
+
+	time(&currTime);
+	timeStruct = localtime(&currTime);
+	strftime(timeString, 20, "[%Y%m%d_%H%M%S] ", timeStruct);
+	std::cout << timeString;
 }
 
 void	Account::displayStatus( void ) const
@@ -83,8 +89,6 @@ void	Account::displayStatus( void ) const
 	std::cout << "deposits:" << _nbDeposits << ";";
 	std::cout << "withdrawals:" << _nbWithdrawals;
 	std::cout << std::endl;
-	// std::cout << "created" << std::endl;
-	// _totalAmount += _amount;
 	return ;
 }
 
