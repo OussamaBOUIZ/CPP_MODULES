@@ -1,3 +1,6 @@
+#ifndef __CONTACT_H__
+# define __CONTACT_H__
+
 #include <iostream>
 #include <string>
 
@@ -16,3 +19,5 @@ class Contact {
 	it must be truncated and the last displayable 
 	character must be replaced by a dot (’.’)
 */
+#endif
+

@@ -1,3 +1,7 @@
+#ifndef __PHONEBOOK_H__
+# define __PHONEBOOK_H__
+
+
 #include "Contact.hpp"
 #include <iostream>
 #include <string>
@@ -30,3 +34,4 @@ std::string	getValidInput(std::string fieldName);
 	It can store a maximum of 8 contacts. 
 	If the user tries to add a 9th contact,replace the oldest one by the new one.
 */
+#endif∏
