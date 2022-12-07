@@ -17,7 +17,6 @@ void	PhoneBook::addContact(void)
 	std::string line;
 	int			idx;
 
-	std::cout << "the orderOfNextContact is " << orderOfNextContact << std::endl;
 	idx = orderOfNextContact % 8;
 	contacts[idx].firstName = getValidInput("First Name");
 	contacts[idx].lastName = getValidInput("Last Name");
@@ -80,8 +79,9 @@ void	PhoneBook::getContact()
 		else
 		{
 			index = stoi(indexFromUser);
+			index--;
 			if (index >= lastEmptyElement() or index < 0)
-				std::cout << "Please enter a number in this range [0 - "<< lastEmptyElement() - 1 << "] 😁" << std::endl;
+				std::cout << "Please enter a number in this range [1 - "<< lastEmptyElement() << "] 😁" << std::endl;
 			else
 				displayAllContactField(index);
 		}
