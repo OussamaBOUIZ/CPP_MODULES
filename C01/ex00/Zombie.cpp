@@ -5,9 +5,7 @@ void	Zombie::announce( void )
 	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-Zombie*	newZombie( std::string name )
+Zombie::~Zombie( void )
 {
-	Zombie *newZombie = new Zombie;
-	newZombie->_name = name;
-	return (newZombie);
+	std::cout << _name << " is getting DESTROYED 😈" << std::endl;
 }
