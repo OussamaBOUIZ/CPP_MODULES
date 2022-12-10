@@ -11,5 +11,6 @@ int	main(int ac, char **av)
 		return (1);
 	for (int i = 0; i < atoi(av[1]); i++)
 		z[i].announce();
+	delete [] z;
 	return (0);
 }
