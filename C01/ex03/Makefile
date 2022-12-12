@@ -1,5 +1,5 @@
-NAME=brain
-CC= c++ -Wall -Wextra -Werror -std=c++98
+NAME=weapon 
+CC= c++ -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 SOURCES = HumanA.cpp HumanB.cpp Weapon.cpp main.cpp
 
