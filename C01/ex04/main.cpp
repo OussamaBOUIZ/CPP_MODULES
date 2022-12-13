@@ -10,7 +10,7 @@ int main( void )
 	outfileObj.open(infileName + ".replace");
 	oldString = getValidString("s1");
 	newString = getValidString("s2");
-	replaceString(buffer, oldString);
+	replaceString(buffer, oldString, newString, infileObj, outfileObj);
 	std::cout << "👍 Nice Check the " + infileName + ".replace !!!"  << std::endl;
 	return (0);
 }

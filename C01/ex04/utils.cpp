@@ -22,20 +22,22 @@ string	getValidString(string	order)
 	return (word);
 }
 
-void	replaceString( string &bufferRef, string oldString )
+void	replaceString( string &bufferRef, string &oldStringRef, string &newStringRef, std::ifstream &infileObj, std::ofstream &outfileObj )
 {
-	size_t	stringPosition = 0;
+	int	stringPosition = 0;
 	size_t	idx = 0;
 
-	std::cout << "I enter here" << std::endl;
-	getline(std::cin, bufferRef);
+	getline(infileObj, bufferRef);
 	std::cout << bufferRef << std::endl;
-	while (not (stringPosition == -1))
+	while (true)
 	{
-		std::cout << "here" << std::endl;
-		stringPosition = bufferRef.find(oldString, idx);
+		stringPosition = bufferRef.find(oldStringRef, idx);
 		std::cout << "String position is : " << stringPosition << std::endl;
-		bufferRef.erase(stringPosition, oldString.length());
-		idx = stringPosition;
+		if (stringPosition == -1)
+			break ;
+		bufferRef.erase(stringPosition, oldStringRef.length());
+		bufferRef.insert(stringPosition, newStringRef);
+		idx = stringPosition + newStringRef.length();
 	}
+	outfileObj << bufferRef << std::endl;
 }
