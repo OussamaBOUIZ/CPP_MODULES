@@ -10,7 +10,7 @@ int main( void )
 	oldString = getValidString("s1");
 	newString = getValidString("s2");
 	while (getline(infileObj, buffer))
-		replaceString(buffer, oldString, newString, infileObj, outfileObj);
+		replaceString(buffer, oldString, newString, outfileObj);
 	std::cout << "👍 Nice Check the " + infileName + ".replace !!!"  << std::endl;
 	return (0);
 }

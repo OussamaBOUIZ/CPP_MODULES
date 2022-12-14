@@ -22,7 +22,7 @@ string	getValidString(string	order)
 	return (word);
 }
 
-void	replaceString( string &bufferRef, string &oldStringRef, string &newStringRef, std::ifstream &infileObj, std::ofstream &outfileObj )
+void	replaceString( string &bufferRef, string &oldStringRef, string &newStringRef, std::ofstream &outfileObj )
 {
 	size_t	stringPosition = 0;
 	size_t	idx = 0;
