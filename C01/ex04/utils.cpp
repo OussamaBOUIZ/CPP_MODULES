@@ -24,16 +24,14 @@ string	getValidString(string	order)
 
 void	replaceString( string &bufferRef, string &oldStringRef, string &newStringRef, std::ifstream &infileObj, std::ofstream &outfileObj )
 {
-	int	stringPosition = 0;
+	size_t	stringPosition = 0;
 	size_t	idx = 0;
 
-	getline(infileObj, bufferRef);
 	std::cout << bufferRef << std::endl;
 	while (true)
 	{
 		stringPosition = bufferRef.find(oldStringRef, idx);
-		std::cout << "String position is : " << stringPosition << std::endl;
-		if (stringPosition == -1)
+		if (stringPosition == string::npos)
 			break ;
 		bufferRef.erase(stringPosition, oldStringRef.length());
 		bufferRef.insert(stringPosition, newStringRef);
