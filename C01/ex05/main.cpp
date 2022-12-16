@@ -8,5 +8,6 @@ int main ( void )
 	simo.complain("error");	
 	simo.complain("warning");	
 	simo.complain("info");
+	simo.complain("Hungry");
 	return (0);
 }

@@ -42,9 +42,12 @@ void	Harl::error( void )
 
 void	Harl::complain( string level )
 {
-	// std::cout << level << std::endl;
-	// (void	(Harl::*)( void )) ptrArr[4];
-	string s[] = {"debug", "info", "warning", "error"};
+	int	levelIndex;
+
+	string levelStrings[] = {"debug", "info", "warning", "error"};
+	levelIndex = indexOf(levelStrings, 4, level);
+	if (levelIndex == -1)
+		{std::cerr << "UNFOUND LEVEL" << std::endl; return ;}
 	ptrFunc	pointerFunctionsArray[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	(this->*pointerFunctionsArray[indexOf(s, 4, level)])();
+	(this->*pointerFunctionsArray[levelIndex])();
 }
