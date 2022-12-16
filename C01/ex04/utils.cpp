@@ -27,7 +27,6 @@ void	replaceString( string &bufferRef, string &oldStringRef, string &newStringRe
 	size_t	stringPosition = 0;
 	size_t	idx = 0;
 
-	std::cout << bufferRef << std::endl;
 	while (true)
 	{
 		stringPosition = bufferRef.find(oldStringRef, idx);
