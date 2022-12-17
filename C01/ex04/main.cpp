@@ -1,16 +1,17 @@
 #include "sed.hpp"
 
-int main( void )
+int main( int ac, char **av )
 {
-	string			infileName, oldString, newString, buffer;
-	std::ifstream	infileObj;
-	std::ofstream	outfileObj;
-	getValidInfile(infileName, infileObj);
-	outfileObj.open(infileName + ".replace");
-	oldString = getValidString("s1");
-	newString = getValidString("s2");
+	string		 oldString, newString, buffer;
+	if (ac != 4)
+		{std::cerr << "INVALID ARGUMENTS" << std::endl; return (1);}
+	std::ifstream	infileObj(av[1]);
+	if (!infileObj)
+		{std::cerr << "UNEXISTING FILE" << std::endl; return (1);}
+	oldString = string(av[2]);
+	newString = string(av[3]);
+	std::ofstream	outfileObj(string(av[1]) + ".replace");
 	while (getline(infileObj, buffer))
 		replaceString(buffer, oldString, newString, outfileObj);
-	std::cout << "👍 Nice Check the " + infileName + ".replace !!!"  << std::endl;
-	return (0);
+	std::cout << "✅ Nice Check the " + string(av[1]) + ".replace !!!"  << std::endl;
 }
