@@ -50,8 +50,6 @@ void	Harl::error( void )
 
 void	Harl::complain( string level )
 {
-	// std::cout << level << std::endl;
-	// (void	(Harl::*)( void )) ptrArr[4];
 	string s[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	int	levelIndex;
 

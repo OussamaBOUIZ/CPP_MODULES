@@ -8,8 +8,8 @@ class Zombie
 {
 	public:
 		void	announce( void );
+		Zombie ( void );
 		std::string name;
-	private:
 };
 
 Zombie	*zombieHorde( int N, std::string name );

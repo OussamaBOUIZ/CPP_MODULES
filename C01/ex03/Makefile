@@ -9,7 +9,7 @@ OBJECTS=$(SOURCES:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(NAME)
+	$(CC) $(CPPFLAGS) $(OBJECTS) -o $(NAME)
 
 clean :
 	$(RM) $(OBJECTS)

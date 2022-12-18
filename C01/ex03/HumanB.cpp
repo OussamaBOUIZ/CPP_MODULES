@@ -1,7 +1,8 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
-HumanB::HumanB(std::string name): weapon(NULL), name(name){};
+// HumanB::HumanB(std::string name): weapon(NULL), name(name){};
+HumanB::HumanB(std::string name) : weapon(NULL), name(name){};
 
 void	HumanB::attack( void )
 {
