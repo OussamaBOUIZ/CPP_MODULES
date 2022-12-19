@@ -1,6 +1,5 @@
 .vscode
 *.o
-.LEARN
 *.pdf
 phonebook
 megaphone
