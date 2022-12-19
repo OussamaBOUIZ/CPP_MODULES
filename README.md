@@ -5,3 +5,8 @@ C++ is a high-level language: when you write a program in it, the shorthands are
 This assignment is composed of 9 modules (C00 through C08), each module tackling one concept or more in C++.
 
 <!--**CHECK THE WIKI PAGE FOR A THOROUGH EXPLANATION**-->
+
+## What topics target each module ?
+
+### C00 :
+This module introduces the concept of OOP, the C++ style of IO manipulation throguh 3 exercises 
