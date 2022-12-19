@@ -10,3 +10,6 @@ This assignment is composed of 9 modules (C00 through C08), each module tackling
 
 ### C00 :
 This module introduces the concept of OOP, the C++ style of IO manipulation throguh 3 exercises 
+
+### C01 :
+This module tackles memory allocation using the new and delete operators
