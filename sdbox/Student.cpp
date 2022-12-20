@@ -13,6 +13,7 @@ class Student
         Student( const Student &);
         void    setMarks(int s1, int s2);
         void    introduceStudent( void );
+        void    displayAddresses( void );
         string  name;
         int     age;
         int     *marks; // this is an Array; of size 2 holding the mark of two respective semesters.
@@ -60,6 +61,14 @@ void    Student::introduceStudent( void )
     cout << "My marks are as follows : " << marks[0] << " " << marks[1] << endl;
 }
 
+void    Student::displayAddresses( void )
+{
+    cout << "---- ADDRESSES OF THIS OBJECT ----" << endl;
+    cout << &name << endl;
+    cout << &age << endl;
+    cout << &grade << endl;
+}
+
 void    foo(Student aStudent)
 {
     (void)aStudent;
@@ -80,9 +89,7 @@ int main( void )
 
     Student Abde = Oussama;
     Abde.introduceStudent();
-    cout << Oussama.marks << endl;
-    cout << Oussama.marks + 1 << endl;
-    cout << Abde.marks << endl;
-    cout << Abde.marks + 1 << endl;
+    Abde.displayAddresses();
+    Oussama.displayAddresses();
     return (0);
 }

@@ -22,4 +22,4 @@ From our code we can define a copy constructor, it is a public member function t
 ## Comments:
 > C++ imposes that the sole argument of the copy constructor is passed by reference. This makes sense as passing by value will issue a call to the copy constructor itself so this declaration : Student( Student ) is incorrect.
 
-> 
+> Knowing that a copy constructor can have both prototypes *Student( Student &)* and *Student (const Student &)* and could both have place inside a class. All in all, a copy constructor will usualy be reading the object it's copying and it will not overwrite the object. So it fully makes sense that the sole argument of this constructor to be a const reference.
