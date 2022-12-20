@@ -10,7 +10,7 @@ class Student
         Student(string name, int age, int grade);
         Student( void );
         ~Student( void );
-        // Student( const Student &);
+        Student( const Student &);
         void    setMarks(int s1, int s2);
         void    introduceStudent( void );
         string  name;
@@ -28,7 +28,24 @@ Student::Student( void )
     grade = 0;
     marks = nullptr;
 }
-Student::~Student( void ) {return ;}
+
+Student::~Student( void )
+{
+    delete [] marks;
+    cout << "Destroying ...." << endl;
+}
+
+Student::Student(const Student &copy)
+{
+    // to try after --> copy.setMarks(val1, val2);
+    name = copy.name;
+    age = copy.age;
+    grade = copy.grade;
+    // marks = new int[2];
+    // marks[0] = copy.marks[0];
+    // marks[1] = copy.marks[1];
+    setMarks(copy.marks[0], copy.marks[1]);
+}
 
 void    Student::setMarks(int s1, int s2)
 {
@@ -61,13 +78,11 @@ int main( void )
     Oussama.setMarks(80, 90);
     Oussama.introduceStudent();
 
-    // Student Abde = Oussama; // When compiling with this line uncommented we get a compilation error saying [Undefined Reference to Student::Student(Student const &)]
-    /*we can understand from this compilation error that the copy constructor was called, let's see if the same thing happens when calling foo( Student )*/
-    // foo(Oussama); // Yes the same thing happens as we didn't define our copy constructor yet, we get the same compilation error message
-    /*we have now a function that creates inside its scope a class of type Student and return it we'll see if this also causes a problem*/
-    // createStudentAndReturnIt();
-    /*Just the call of createStudentAndReturnIt() yields the same error, the return instruction is the responsible of this error */
-    /*Now let's comment this copy constructor from our class and see what happens*/
     Student Abde = Oussama;
+    Abde.introduceStudent();
+    cout << Oussama.marks << endl;
+    cout << Oussama.marks + 1 << endl;
+    cout << Abde.marks << endl;
+    cout << Abde.marks + 1 << endl;
     return (0);
 }
