@@ -12,12 +12,14 @@ class Student
         ~Student( void );
         Student( const Student &);
         void    setMarks(int s1, int s2);
+        void    setMarksArray(int s1, int s2);
         void    introduceStudent( void );
         void    displayAddresses( void );
         string  name;
         int     age;
         int     *marks; // this is an Array; of size 2 holding the mark of two respective semesters.
-        int     grade;        
+        int     grade;
+        int     marksArray[2];        
 };
 
 /* CLASS IMPLEMENTATION OCCF*/
@@ -32,7 +34,7 @@ Student::Student( void )
 
 Student::~Student( void )
 {
-    delete [] marks;
+    // delete [] marks;
     cout << "Destroying ...." << endl;
 }
 
@@ -54,11 +56,16 @@ void    Student::setMarks(int s1, int s2)
     marks[0] = s1;
     marks[1] = s2;
 }
+void    Student::setMarksArray(int s1, int s2)
+{
+    marksArray[0] = s1;
+    marksArray[1] = s2;
+}
 
 void    Student::introduceStudent( void )
 {
     cout << "My name is " + name + " and I'm " << age << " yo."<< endl;
-    cout << "My marks are as follows : " << marks[0] << " " << marks[1] << endl;
+    cout << "My marksArray are as follows : " << marksArray[0] << " " << marksArray[1] << endl;
 }
 
 void    Student::displayAddresses( void )
@@ -84,12 +91,12 @@ Student createStudentAndReturnIt( void )
 int main( void )
 {
     Student Oussama("oussama", 22, 1);
-    Oussama.setMarks(80, 90);
+    Oussama.setMarksArray(80, 90);
     Oussama.introduceStudent();
 
     Student Abde = Oussama;
     Abde.introduceStudent();
-    Abde.displayAddresses();
-    Oussama.displayAddresses();
+    // Abde.displayAddresses();
+    // Oussama.displayAddresses();
     return (0);
 }

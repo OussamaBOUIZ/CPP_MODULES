@@ -8,8 +8,8 @@ class Fixed {
 	public:
 		Fixed ( void );
 		Fixed ( const Fixed & );
-		// a copy assignment operator overload;
 		~Fixed ( void );
+        Fixed   &operator= ( const Fixed & );
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
 };
