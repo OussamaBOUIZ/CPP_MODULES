@@ -16,7 +16,6 @@ class Fixed {
 		void	setRawBits( int const raw );
 		float	toFloat ( void ) const ;
 		int		toInt ( void ) const;
-		// overloading some operators needed here.
 };
 
 #endif

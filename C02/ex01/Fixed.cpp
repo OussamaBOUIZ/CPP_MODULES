@@ -1,5 +1,7 @@
 #include "Fixed.hpp"
 #include <iostream>
+#include <math.h>
+
 Fixed::Fixed ( const int number )
 {
     // converts to the corresponding fixed-point value
@@ -8,6 +10,7 @@ Fixed::Fixed ( const int number )
 Fixed::Fixed (const float floatNumber)
 {
     // converts to the corresponding fixed-point value
+	fixedPointNumber = floatNumber * pow(2, fractionalBits);	
 }
 
 Fixed::Fixed ( void )
