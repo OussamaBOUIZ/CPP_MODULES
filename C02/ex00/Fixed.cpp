@@ -16,6 +16,8 @@ Fixed::~Fixed ( void )
 Fixed::Fixed ( const Fixed &obj)
 {
     fixedPointNumber = obj.fixedPointNumber;
+	// *this = obj;
+	// a = b;
     std::cout << "Copy constructor called" << std::endl;
 }
 
