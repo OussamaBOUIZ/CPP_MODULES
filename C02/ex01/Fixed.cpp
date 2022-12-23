@@ -2,15 +2,19 @@
 #include <iostream>
 #include <math.h>
 
+
+/* CONSTRUCTORS */
+
 Fixed::Fixed ( const int number )
 {
     // converts to the corresponding fixed-point value
+    fixedPointNumber = number;
 }
 
 Fixed::Fixed (const float floatNumber)
 {
     // converts to the corresponding fixed-point value
-	fixedPointNumber = floatNumber * pow(2, fractionalBits);	
+	fixedPointNumber = floatNumber << fractionalBits;	
 }
 
 Fixed::Fixed ( void )
