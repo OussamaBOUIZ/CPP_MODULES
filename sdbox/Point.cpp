@@ -14,6 +14,7 @@ class Point {
         Point( const Point & );
         ~Point( void );
         Point   symetric( void );
+        void    locate ( void );
 };
 
 Point::Point( int a=0, int b=0 ) 
@@ -43,13 +44,29 @@ Point   Point::symetric( void )
     return (Sym);
 }
 
+void    Point::locate ( void )
+{
+    cout << "X : " << x << endl;
+    cout << "Y : " << y << endl;
+}
+
+class   PointCol : public Point {
+    private:
+        int color;
+    public:
+        PointCol ( int a, int b) : {} public : Point ( int a, int b);
+        void     setColor ( int color );
+};
 
 int main( void )
 {
     Point a(1, 3), b;
 
-    cout << "Before calling Symetric " << endl;
-    b = a.symetric();
-    cout << "After caliing Symetric" << endl;
+
+    PointCol    z(14, 22);
+
+    z.setColor(200);
+    z.locate();
+    
     return (0);
 }
