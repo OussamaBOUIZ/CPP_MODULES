@@ -12,13 +12,14 @@ ClapTrap::ClapTrap(string name): name(name)
 
 ClapTrap::ClapTrap( void )
 {
+	std::cout << "ClapTrap Default Constructor called " << std::endl;
     name = "unnamed";
     hitPoints = 10;
     energyPoints = 10;
     attackDamage = 0;
 }
 
-ClapTrap::˜ClapTrap( void )
+ClapTrap::~ClapTrap( void )
 {
     std::cout << "Destroying " << name << " ..." << std::endl;
 }
@@ -37,6 +38,14 @@ void    ClapTrap::attack(const string &target)
 
 void    ClapTrap::beRepaired(unsigned int amount)
 {
+	if (!hitPoints or !energyPoints)
+    {
+        return ;
+        std::cout << "No Points left " << name << " cannot be repaired!!!" << std::endl;
+    }
+    energyPoints--;
+	hitPoints += amount;
+    std::cout << "ClapTrap " << name << " gets " << amount << " hit points " << std::endl;
     // if no hit points or energy points are left, do nothing
     // it gets <amount> hits point back 
     /*This costs 1 energy point*/
@@ -44,5 +53,6 @@ void    ClapTrap::beRepaired(unsigned int amount)
 
 void    ClapTrap::takeDamage(unsigned int amount)
 {
-    return ;
+	attackDamage += amount;
+    std::cout << "ClapTrap " << name << " gets " << amount << " of damage" << std::endl;
 }
