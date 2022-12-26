@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 
+const int Fixed::fractionalBits = 8;
 
 /* CONSTRUCTORS */
 
