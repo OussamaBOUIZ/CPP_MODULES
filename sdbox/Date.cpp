@@ -11,8 +11,8 @@ class Date {
         int getDay ( void ) const;
         int getMonth ( void ) const;
         int getYear ( void ) const;
-        friend std::ostream &operator<< (std::ostream &out, const Date &d);
 };
+
 std::ostream &operator<< (std::ostream &out, const Date &d)
 {
     out << d.getDay() << "-"<< d.getMonth() << "-"<< d.getYear();
