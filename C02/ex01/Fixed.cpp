@@ -14,7 +14,7 @@ Fixed::Fixed ( const int number )
 Fixed::Fixed (const float floatNumber)
 {
     // converts to the corresponding fixed-point value
-	fixedPointNumber = floatNumber << fractionalBits;	
+	fixedPointNumber = floatNumber * pow(2, fractionalBits);	
 }
 
 Fixed::Fixed ( void )
@@ -51,11 +51,18 @@ int Fixed::getRawBits( void ) const
 float   Fixed::toFloat( void ) const
 {
     // converts the fixed-point value to a floating point value
-    return ((float)(fixedPointNumber >> fractionalBits))
+    return ((float)(fixedPointNumber >> fractionalBits));
 }
 
-float   Fixed::toInt( void ) const
+int   Fixed::toInt( void ) const
 {
     // converts the fixed-point value to an integer value
-    return ((int)(fixedPointNumber >> fractionalBits))
+    return ((int)(fixedPointNumber >> fractionalBits));
+}
+
+std::ostream &operator<< (std::ostream &out, const Fixed &obj)
+{
+    int a = obj.toInt();
+    std::cout << a;
+    return (out);
 }
