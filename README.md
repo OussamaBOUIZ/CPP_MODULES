@@ -13,3 +13,6 @@ This module introduces the concept of OOP, the C++ style of IO manipulation thro
 
 ### C01 :
 This module tackles memory allocation using the new and delete operators
+
+### C02:
+This module is about ad-hoc polymorphism, overloading operators and the canonical form.
