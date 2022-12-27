@@ -1,6 +1,6 @@
 #ifndef __FIXED_H__
 # define __FIXED_H__
-
+# include <iostream>
 class Fixed {
 	private:
 		int	fixedPointNumber;
@@ -17,6 +17,8 @@ class Fixed {
 		float	toFloat ( void ) const ;
 		int		toInt ( void ) const;
 };
+
+std::ostream &operator<< (std::ostream &out, const Fixed &obj);
 
 #endif
 
