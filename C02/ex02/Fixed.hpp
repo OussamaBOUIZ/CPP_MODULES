@@ -4,7 +4,7 @@
 class Fixed {
 	private:
 		int	fixedPointNumber;
-		static const int fractionalBits;
+		static const int fractionalBits = 8;
 	public:
 		Fixed ( const int number );
 		Fixed ( const float floatNumber );
@@ -12,8 +12,8 @@ class Fixed {
 		Fixed ( const Fixed & );
 		~Fixed ( void );
         Fixed   		&operator= ( const Fixed & );
-        bool    		operator> (  const Fixed & );
-        bool    		operator< ( const Fixed & );
+        bool    		operator> (  const Fixed & ) const ;
+        bool    		operator< ( const Fixed & ) const ;
         bool    		operator>= ( const Fixed & );
         bool    		operator<= ( const Fixed & );
         bool    		operator== ( const Fixed & );
@@ -30,10 +30,10 @@ class Fixed {
 		void			setRawBits( int const raw );
 		float			toFloat ( void ) const ;
 		int				toInt ( void ) const;
-		static Fixed	&min ( Fixed &, Fixed & );
-		static Fixed	&min ( const Fixed &, const Fixed & );
-		static Fixed	&max ( Fixed &, Fixed & );
-		static Fixed	&max ( const Fixed &, const Fixed & );
+		static Fixed	&min ( Fixed & obj1, Fixed & obj2 );
+		static const Fixed	&min ( const Fixed & obj1, const Fixed & obj2 );
+		static Fixed	&max ( Fixed & obj1, Fixed & obj2 );
+		static const Fixed 	&max ( Fixed const &obj1, Fixed const &obj2 );
 };
 
 std::ostream &		operator<< (std::ostream &out, const Fixed &obj);

@@ -1,8 +1,6 @@
 #include "Fixed.hpp"
 #include <iostream>
-#include <math.h>
-
-const int Fixed::fractionalBits = 8;
+#include <cmath>
 
 /* CONSTRUCTORS */
 
@@ -17,7 +15,7 @@ Fixed::Fixed (const float floatNumber)
 {
     // converts to the corresponding fixed-point value
 	std::cout << "Float constructor called" << std::endl;
-	fixedPointNumber = roundf(floatNumber * pow(2, fractionalBits));	
+    fixedPointNumber = roundf(floatNumber * (1 << fractionalBits));	
 }
 
 Fixed::Fixed ( void )
@@ -41,21 +39,25 @@ Fixed::Fixed ( const Fixed &obj)
 Fixed   &Fixed::operator= (const Fixed &obj)
 {
     std::cout << "Copy assignment operator called" << std::endl;
-    fixedPointNumber = obj.fixedPointNumber;
+    fixedPointNumber = obj.getRawBits();
     return (*this);
 }
 
 int Fixed::getRawBits( void ) const
 {
     std::cout << "getRawBits member function called" << std::endl;
-    return (fractionalBits);
+    return (fixedPointNumber);
+}
+
+void    Fixed::setRawBits( int const raw )
+{
+    fixedPointNumber = raw;
 }
 
 float   Fixed::toFloat( void ) const
 {
     // converts the fixed-point value to a floating point value
-	float value = (float)(fixedPointNumber / pow(2, fractionalBits));
-    return (value);
+	return  (fixedPointNumber / (float)(1 << fractionalBits));
 }
 
 int   Fixed::toInt( void ) const
@@ -73,14 +75,14 @@ std::ostream &operator<< (std::ostream &out, const Fixed &obj)
 /* We should overload the following operators */
 /*        >, <, >=, <=, == and !=        */
 
-bool    Fixed::operator> ( const Fixed &obj )
+bool    Fixed::operator> ( const Fixed &obj ) const
 {
     if (fixedPointNumber > obj.fixedPointNumber)
         return (true);
     return (false);
 }
 
-bool    Fixed::operator< ( const Fixed &obj)
+bool    Fixed::operator< ( const Fixed &obj) const
 {
     if (fixedPointNumber < obj.fixedPointNumber)
         return (true);
@@ -183,6 +185,7 @@ Fixed   Fixed::operator-- ( void )
 
 /*--MAX AND MIN STATIC MEMBER FUNCTIONS--*/
 
+
 Fixed	&Fixed::min ( Fixed &obj1, Fixed &obj2 )
 {
     if (obj1 > obj2)
@@ -190,7 +193,7 @@ Fixed	&Fixed::min ( Fixed &obj1, Fixed &obj2 )
     return (obj1);
 }
 
-Fixed	&Fixed::min ( const Fixed &obj1, const Fixed &obj2 )
+const Fixed	&Fixed::min ( const Fixed &obj1, const Fixed &obj2 )
 {
     if (obj1 > obj2)
         return (obj2);
@@ -204,7 +207,8 @@ Fixed	&Fixed::max ( Fixed &obj1, Fixed &obj2 )
     return (obj2);
 }
 
-Fixed	&Fixed::max ( const Fixed &obj1, const Fixed &)
+
+const Fixed &Fixed::max ( Fixed const &obj1, Fixed const &obj2)
 {
     if (obj1 > obj2)
         return (obj1);
