@@ -1,5 +1,6 @@
 #include "Fixed.hpp"
 
+/*
 int main ( void )
 {
     Fixed a(1233.45f);
@@ -16,5 +17,23 @@ int main ( void )
     std::cout << "The sum is "<< sum << std::endl;
     Fixed subs = c - d;
     std::cout << "The subs of c and d is " << subs << std::endl;
+    Fixed x(12.36f);
+    Fixed y(20.36f);
+    Fixed z = x * y;
+    std::cout << "The product of x and y is " << z << std::endl;
+    Fixed   div = x / y;
+    std::cout << "The divison of x on y is "<< div << std::endl;
+    float aa = 1 << 8;
+    std::cout << aa<<std::endl;
+    return (0);
+}
+*/
+
+int main ( void )
+{
+    Fixed a(0);
+
+    std::cout << "a++ " << a++ << std::endl;
+    std::cout << "a "<< a << std::endl;
     return (0);
 }

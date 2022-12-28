@@ -138,8 +138,26 @@ Fixed   Fixed::operator* ( const Fixed &obj )
 {
     Fixed product;
 
-    product.fixedPointNumber = ;
+    product.fixedPointNumber = (fixedPointNumber * obj.fixedPointNumber) / (1 << fractionalBits);
     return (product);
+}
+
+Fixed   Fixed::operator/ ( const Fixed &obj )
+{
+    Fixed   division;
+
+    //unfunctional
+    division.fixedPointNumber = (fixedPointNumber / obj.fixedPointNumber) ;
+    return (division);
+}
+
+Fixed   Fixed::operator++ ( int )
+{
+    Fixed   postInc;
+
+    postInc = (*this);
+    this->fixedPointNumber++;
+    return (postInc);
 }
 
 

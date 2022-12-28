@@ -21,6 +21,11 @@ class Fixed {
         Fixed   operator+ ( const Fixed & );
         Fixed   operator- ( const Fixed & );
         Fixed   operator* ( const Fixed & );
+        Fixed   operator/ ( const Fixed & );
+		Fixed	operator++ ( void );
+		Fixed	operator-- ( void );
+		Fixed	operator++ ( int );
+		Fixed	operator-- ( int );
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
 		float	toFloat ( void ) const ;
