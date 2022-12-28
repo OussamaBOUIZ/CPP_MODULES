@@ -1,6 +1,5 @@
 #include "Fixed.hpp"
 
-/*
 int main ( void )
 {
     Fixed a(1233.45f);
@@ -23,12 +22,10 @@ int main ( void )
     std::cout << "The product of x and y is " << z << std::endl;
     Fixed   div = x / y;
     std::cout << "The divison of x on y is "<< div << std::endl;
-    float aa = 1 << 8;
-    std::cout << aa<<std::endl;
     return (0);
 }
-*/
 
+/*
 int main ( void )
 {
     Fixed a(0);
@@ -37,3 +34,4 @@ int main ( void )
     std::cout << "a "<< a << std::endl;
     return (0);
 }
+*/

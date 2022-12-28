@@ -147,7 +147,7 @@ Fixed   Fixed::operator/ ( const Fixed &obj )
     Fixed   division;
 
     //unfunctional
-    division.fixedPointNumber = (fixedPointNumber / obj.fixedPointNumber) ;
+    division.fixedPointNumber = (fixedPointNumber * (1 << fractionalBits) / obj.fixedPointNumber) ;
     return (division);
 }
 
