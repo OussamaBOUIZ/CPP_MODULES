@@ -160,4 +160,54 @@ Fixed   Fixed::operator++ ( int )
     return (postInc);
 }
 
+Fixed   Fixed::operator-- ( int )
+{
+    Fixed   postDec;
+
+    postDec = (*this);
+    this->fixedPointNumber--;
+    return (postDec);
+}
+
+Fixed   Fixed::operator++ ( void )
+{
+    this->fixedPointNumber++;
+    return (*this);
+}
+
+Fixed   Fixed::operator-- ( void )
+{
+    this->fixedPointNumber--;
+    return (*this);
+}
+
+/*--MAX AND MIN STATIC MEMBER FUNCTIONS--*/
+
+Fixed	&Fixed::min ( Fixed &obj1, Fixed &obj2 )
+{
+    if (obj1 > obj2)
+        return (obj2);
+    return (obj1);
+}
+
+Fixed	&Fixed::min ( const Fixed &obj1, const Fixed &obj2 )
+{
+    if (obj1 > obj2)
+        return (obj2);
+    return (obj1);
+}
+
+Fixed	&Fixed::max ( Fixed &obj1, Fixed &obj2 )
+{
+    if (obj1 > obj2)
+        return (obj1);
+    return (obj2);
+}
+
+Fixed	&Fixed::max ( const Fixed &obj1, const Fixed &)
+{
+    if (obj1 > obj2)
+        return (obj1);
+    return (obj2);
+}
 
