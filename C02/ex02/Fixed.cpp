@@ -192,6 +192,12 @@ Fixed	&Fixed::min ( Fixed &obj1, Fixed &obj2 )
         return (obj2);
     return (obj1);
 }
+Fixed	&Fixed::max ( Fixed &obj1, Fixed &obj2 )
+{
+    if (obj1 > obj2)
+        return (obj1);
+    return (obj2);
+}
 
 const Fixed	&Fixed::min ( const Fixed &obj1, const Fixed &obj2 )
 {
@@ -200,12 +206,6 @@ const Fixed	&Fixed::min ( const Fixed &obj1, const Fixed &obj2 )
     return (obj1);
 }
 
-Fixed	&Fixed::max ( Fixed &obj1, Fixed &obj2 )
-{
-    if (obj1 > obj2)
-        return (obj1);
-    return (obj2);
-}
 
 
 const Fixed &Fixed::max ( Fixed const &obj1, Fixed const &obj2)

@@ -21,7 +21,3 @@ class Fixed {
 std::ostream &operator<< (std::ostream &out, const Fixed &obj);
 
 #endif
-
-
-/* https://www.youtube.com/watch?v=ZMsrZvBmQnU */
-/* Fixed Point numbers in C++ */
