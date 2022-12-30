@@ -8,5 +8,7 @@ class FragTrap : public ClapTrap {
 		FragTrap ( void );
 		~FragTrap ( void );
 		FragTrap ( const FragTrap &);
+		FragTrap	&operator= ( const FragTrap & );
+		void	highFiveGuys ( void );
 };
 #endif

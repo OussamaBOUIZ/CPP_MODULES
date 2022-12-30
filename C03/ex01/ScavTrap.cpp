@@ -9,6 +9,9 @@ ScavTrap::ScavTrap ( string name ) : ClapTrap(name) {
 
 ScavTrap::ScavTrap ( void ): ClapTrap() {
 	std::cout << "ScavTrap Default constructor called ..." << std::endl;
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 20;
 }
 
 ScavTrap::~ScavTrap ( void )
@@ -25,7 +28,7 @@ ScavTrap	&ScavTrap::operator= ( const ScavTrap &obj)
 	return (*this);
 }
 
-ScavTrap::ScavTrap( const ScavTrap &obj)
+ScavTrap::ScavTrap( const ScavTrap &obj): ClapTrap(obj)
 {
 	*this = obj;
 }

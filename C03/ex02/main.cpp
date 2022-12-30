@@ -1,43 +1,23 @@
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
+# include "FragTrap.hpp"
 
-void	scenarioOne( ClapTrap &obj, unsigned int damage, unsigned int repairs )
+int main ( void )
 {
-	obj.takeDamage(damage);
-	obj.attack("Lion");
-	obj.beRepaired(repairs);
-}
+	FragTrap	Snail, SnailTwo("A Snail");
 
-void	scenarioTwo( ClapTrap &obj, unsigned int damage, size_t count )
-{
-	obj.takeDamage(damage);
-	for (size_t i = 0; i < count; i++)
-		obj.attack("Lion");
-}
+	Snail = SnailTwo;
 
-// int	main( void )
-// {
+	Snail.highFiveGuys();
+	FragTrap	HedgeHog("HedgeHog");
 
-// 	ScavTrap	gecko("Gecko");
-// 	scenarioOne(gecko, 50, 50);
-// 	return (0);
-// }
+	HedgeHog.attack("Snail");
+	HedgeHog.takeDamage(2);
 
-int main()
-{
-	ScavTrap	Ant("Ant");
+	Snail.attack("HedgeHog");
+	Snail.takeDamage(56);
 
-	ScavTrap AnotherAnt;
+	FragTrap	CaterPillar("Cater Pillar");
 
-	Ant.attack("Beetle");
-	Ant.takeDamage(42);
-	Ant.beRepaired(457);
-	AnotherAnt.guardGate();
-
-	ScavTrap CaterPillar("CaterPillar");
-
-	CaterPillar.attack("Ant");
-	Ant.beRepaired(256);
-	Ant.attack("CaterPillar");
+	CaterPillar.highFiveGuys();
 	return (0);
 }
+
