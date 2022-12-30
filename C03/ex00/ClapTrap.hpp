@@ -5,18 +5,20 @@
 typedef std::string string;
 
 class ClapTrap {
-    private:
-        string  		 name;
-        unsigned int     hitPoints; // Represents the health of the claptrap
-        unsigned int     energyPoints;
-        unsigned int     attackDamage;
     public:
         ClapTrap ( string name);
         ClapTrap ( void );
 		~ClapTrap ( void );
+		ClapTrap ( const ClapTrap &);
+		ClapTrap	&operator= ( const ClapTrap &);
         void    attack ( const string &target );
         void    takeDamage ( unsigned int amount );
         void    beRepaired ( unsigned int amount );
+    private:
+        string  		 _name;
+        unsigned int     _hitPoints; // Represents the health of the claptrap
+		unsigned int     _energyPoints;
+        unsigned int     _attackDamage;
 };
 
 #endif
