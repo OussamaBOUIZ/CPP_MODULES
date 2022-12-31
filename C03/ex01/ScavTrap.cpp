@@ -30,7 +30,19 @@ ScavTrap	&ScavTrap::operator= ( const ScavTrap &obj)
 
 ScavTrap::ScavTrap( const ScavTrap &obj): ClapTrap(obj)
 {
+	std::cout << "ScavTrap Copy Constructor Called " << std::endl;
 	*this = obj;
+}
+
+void	ScavTrap::attack ( const string &target )
+{
+      if (!_hitPoints or !_energyPoints)
+    {
+        std::cout << "No Points left " << _name << " cannot attack" << std::endl;
+        return ;
+    }
+    std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+    _energyPoints--;
 }
 
 void	ScavTrap::guardGate ( void ) 

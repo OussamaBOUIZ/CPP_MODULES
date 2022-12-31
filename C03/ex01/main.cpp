@@ -8,7 +8,7 @@ void	scenarioOne( ClapTrap &obj, unsigned int damage, unsigned int repairs )
 	obj.beRepaired(repairs);
 }
 
-void	scenarioTwo( ClapTrap &obj, unsigned int damage, size_t count )
+void	scenarioTwo ( ClapTrap &obj, unsigned int damage, size_t count )
 {
 	obj.takeDamage(damage);
 	for (size_t i = 0; i < count; i++)
@@ -23,10 +23,11 @@ void	scenarioTwo( ClapTrap &obj, unsigned int damage, size_t count )
 // 	return (0);
 // }
 
-int main()
+int main ( void )
 {
 	ScavTrap	Ant("Ant");
 
+	Ant.attack("shit");
 	ScavTrap AnotherAnt;
 
 	Ant.attack("Beetle");

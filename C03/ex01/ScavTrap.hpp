@@ -4,12 +4,13 @@
 
 class ScavTrap : public ClapTrap {
 	public:
-		ScavTrap ( string name);
+		ScavTrap ( string name );
 		ScavTrap ( void );
 		~ScavTrap ( void );
 		ScavTrap ( const ScavTrap & );
-		ScavTrap	&operator= (const ScavTrap &);
+		ScavTrap	&operator= ( const ScavTrap & );
 		void	guardGate ( void );
+		void	attack (const string &target );
 };
 
 #endif
