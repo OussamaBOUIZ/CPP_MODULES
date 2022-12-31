@@ -24,6 +24,27 @@ void	unknownAttacker( ClapTrap obj, const string &target, unsigned int repairs, 
 	obj.beRepaired(repairs);
 }
 
+void	pingPong (ClapTrap obj1, ClapTrap obj2)
+{
+	obj1.attack(obj2.getName());
+	obj2.takeDamage(5);
+	obj2.beRepaired(30);
+	obj2.attack(obj1.getName());
+	obj1.takeDamage(10);
+	obj1.beRepaired(50);
+	obj2.attack(obj1.getName());
+	obj1.takeDamage(10);
+	obj2.attack(obj1.getName());
+	obj1.takeDamage(10);
+	obj2.attack(obj1.getName());
+	obj1.takeDamage(10);
+	obj2.attack(obj1.getName());
+	obj1.takeDamage(10);
+	obj2.attack(obj1.getName());
+	obj1.takeDamage(10);
+	obj1.beRepaired(25);
+}
+
 int	main( void )
 {
 	ClapTrap lizard("LIZARD");
@@ -32,9 +53,10 @@ int	main( void )
 	repetitiveAttack(lizard, "LION", 145, 100, 12);
 	
 	ClapTrap	Ghost;
-
-	
-
 	unknownAttacker(Ghost, "VOID", 42, 42);
+	std::cout << "----------------------------------------" << std::endl;
+	ClapTrap	Zebra("Zebra");
+	ClapTrap	lion("Lion");
+	pingPong(Zebra, lion);
 	return (0);
 }

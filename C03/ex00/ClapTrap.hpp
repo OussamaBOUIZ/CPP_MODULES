@@ -9,11 +9,12 @@ class ClapTrap {
         ClapTrap ( string name);
         ClapTrap ( void );
 		~ClapTrap ( void );
-		ClapTrap ( const ClapTrap &);
+		ClapTrap ( const ClapTrap & );
 		ClapTrap	&operator= ( const ClapTrap &);
         void    attack ( const string &target );
         void    takeDamage ( unsigned int amount );
         void    beRepaired ( unsigned int amount );
+		string	getName ( void ) const;
     private:
         string  		 _name;
         unsigned int     _hitPoints; // Represents the health of the claptrap

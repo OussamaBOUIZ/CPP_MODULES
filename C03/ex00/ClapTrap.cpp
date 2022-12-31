@@ -1,6 +1,8 @@
 #include "ClapTrap.hpp"
 
-/*--OCCF--*/
+/* ----------------------------------------------------- */
+/* ------------------ CANONICAL FORM ------------------- */
+/* ----------------------------------------------------- */
 
 ClapTrap::ClapTrap(string name): _name(name) 
 {
@@ -10,7 +12,7 @@ ClapTrap::ClapTrap(string name): _name(name)
     std::cout << "Constructing ClapTrap "<< name << std::endl;
 }
 
-ClapTrap::ClapTrap( void )
+ClapTrap::ClapTrap ( void )
 {
 	std::cout << "ClapTrap Default Constructor called " << std::endl;
     _name = "UNNAMED";
@@ -39,11 +41,15 @@ ClapTrap::ClapTrap ( const ClapTrap &obj)
 	*this = obj;
 }
 
+/* ----------------------------------------------------- */
+/* ------------------ MEMBER FUNCTIONS ----------------- */
+/* ----------------------------------------------------- */
+
 void    ClapTrap::attack(const string &target)
 {
     // if no hit points or energy points are left, do nothing
-    if (!_hitPoints or !_energyPoints)
-    {
+    if (!_hitPoints or !_energyPoints) 
+    { 
         std::cout << "No Points left " << _name << " cannot attack" << std::endl;
         return ;
     }
@@ -54,10 +60,10 @@ void    ClapTrap::attack(const string &target)
 void    ClapTrap::beRepaired(unsigned int amount)
 {
 	if (!_hitPoints or !_energyPoints)
-    {
+	{
         std::cout << "No Points left " << _name << " cannot be repaired!!!" << std::endl;
         return ;
-    }
+	}
     _energyPoints--;
 	_hitPoints += amount;
     std::cout << "ClapTrap " << _name << " gets " << amount << " hit points " << std::endl;
@@ -65,6 +71,14 @@ void    ClapTrap::beRepaired(unsigned int amount)
 
 void    ClapTrap::takeDamage(unsigned int amount)
 {
-	_attackDamage += amount;
+	if (_hitPoints <= amount)
+		_hitPoints = 0;
+	else
+		_hitPoints -= amount;
     std::cout << "ClapTrap " << _name << " gets " << amount << " of damage" << std::endl;
+}  
+
+string	ClapTrap::getName ( void ) const
+{
+	return (_name);
 }
