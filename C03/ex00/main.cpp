@@ -45,6 +45,7 @@ void	pingPong (ClapTrap obj1, ClapTrap obj2)
 	obj1.beRepaired(25);
 }
 
+
 int	main( void )
 {
 	ClapTrap lizard("LIZARD");

@@ -15,14 +15,7 @@ void	scenarioTwo ( ClapTrap &obj, unsigned int damage, size_t count )
 		obj.attack("Lion");
 }
 
-// int	main( void )
-// {
-
-// 	ScavTrap	gecko("Gecko");
-// 	scenarioOne(gecko, 50, 50);
-// 	return (0);
-// }
-
+/*
 int main ( void )
 {
 	ScavTrap	Ant("Ant");
@@ -40,5 +33,15 @@ int main ( void )
 	CaterPillar.attack("Ant");
 	Ant.beRepaired(256);
 	Ant.attack("CaterPillar");
+	return (0);
+}
+*/
+
+int main ( void )
+{
+	ScavTrap	Ant("Ant");
+
+	Ant.attack("Beetle");
+	Ant.guardGate();
 	return (0);
 }

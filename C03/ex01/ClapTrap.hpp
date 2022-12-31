@@ -14,6 +14,7 @@ class ClapTrap {
         void    attack ( const string &target );
         void    takeDamage ( unsigned int amount );
         void    beRepaired ( unsigned int amount );
+		string	getName ( void ) const;
     protected:
         string  		 _name;
         unsigned int     _hitPoints; // Represents the health of the claptrap
