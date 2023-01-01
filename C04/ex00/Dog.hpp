@@ -4,11 +4,11 @@
 
 class Dog: public Animal {
     public:
-        Dog ( string type );
         Dog ( void );
         ~Dog ( void );
         Dog ( const Dog &);
         Dog &operator= ( const Dog &);
-}
+		void	makeSound ( void ) const;
+};
 
 #endif

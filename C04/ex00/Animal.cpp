@@ -18,9 +18,20 @@ Animal::~Animal ( void )
 Animal  &Animal::operator= ( const Animal &obj )
 {
     type = obj.type;
+	return (*this);
 }
 
 Animal::Animal ( const Animal &obj)
 {
+	std::cout << "Copy constructor of Animal called ..." << std::endl;
     *this = obj;
+}
+
+void	Animal::makeSound ( void ) const
+{
+	std::cout << "Animal Sound ..." << std::endl;
+}
+
+string	Animal::getType( void ) const{
+	return (type);
 }
