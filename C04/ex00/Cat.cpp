@@ -2,7 +2,7 @@
 
 Cat::Cat ( void )
 {
-	std::cout << "Cat Default Constructing ..." << std::endl;
+	std::cout << "Default Constructing Cat ..." << std::endl;
 	type = "Cat";
 }
 
@@ -27,4 +27,9 @@ Cat::Cat ( const Cat &obj )
 void	Cat::makeSound ( void ) const
 {
 	std::cout << "Cat mewing ..." << std::endl;
+}
+
+
+void	Cat::testing ( void ) const {
+	std::cout << "testing CAT..." << std::endl;
 }

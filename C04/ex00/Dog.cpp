@@ -25,5 +25,5 @@ Dog::Dog ( const Dog &obj )
 
 void	Dog::makeSound ( void ) const
 {
-	std::cout << "Dog mewing ..." << std::endl;
+	std::cout << "Dog Barking ..." << std::endl;
 }

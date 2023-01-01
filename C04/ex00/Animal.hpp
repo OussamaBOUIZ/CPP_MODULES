@@ -13,6 +13,7 @@ class Animal {
         Animal  &operator= ( const Animal & );
 		virtual void	makeSound ( void ) const;
 		string	getType ( void ) const;
+		virtual void	testing( void ) const;
     protected:
         string type;
 };

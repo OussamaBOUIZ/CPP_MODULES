@@ -7,7 +7,7 @@ Animal::Animal ( string type ) : type (type) {
 Animal::Animal ( void )
 {
     type = "NOTYPE";
-    std::cout << "Default Constructing Animal with no type "<< std::endl;
+    std::cout << "Default Constructing Animal... "<< std::endl;
 }
 
 Animal::~Animal ( void )
@@ -34,4 +34,9 @@ void	Animal::makeSound ( void ) const
 
 string	Animal::getType( void ) const{
 	return (type);
+}
+
+void	Animal::testing ( void ) const 
+{
+	std::cout << "<<<<<< Testing Animal >>>>>>>" << std::endl;
 }

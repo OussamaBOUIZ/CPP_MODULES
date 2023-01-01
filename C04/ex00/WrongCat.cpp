@@ -1,5 +1,8 @@
 #include "WrongCat.hpp"
-
+WrongCat::WrongCat ( void )
+{
+	type = "WrongCat";
+}
 WrongCat::~WrongCat ( void )
 {
 	std::cout << "Wrong Cat Default constructor clalled " << std::endl;	

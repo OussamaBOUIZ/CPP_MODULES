@@ -5,7 +5,6 @@
 
 class WrongCat: public WrongAnimal {
 	public:
-		WrongCat ( /*args*/ );
 		WrongCat ( void );
 		~WrongCat ( void );
 		WrongCat ( const WrongCat & );
