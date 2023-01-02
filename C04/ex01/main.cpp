@@ -49,5 +49,11 @@ int main ( void )
 		else
 			zoo[i] = new Cat;
 	}
+	for (size_t i = 0; i < 10; i++)
+	{
+		/* code */
+		delete zoo[i];
+	}
+	
 	return (0);
 }
