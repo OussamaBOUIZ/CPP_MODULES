@@ -1,5 +1,6 @@
 #ifndef _DOG_H__
 # define _DOG_H__
+
 # include "Animal.hpp"
 # include "Brain.hpp"
 
@@ -10,8 +11,10 @@ class Dog: public Animal {
         Dog ( const Dog & );
         Dog &operator= ( const Dog & );
 		void	makeSound ( void ) const;
-	private:
+		void	fillDogBrain ( char **, int );
+		void	exposeDogBrain ( void ) const;
 		Brain	*dogBrain;
+	private:
 };
 
 #endif

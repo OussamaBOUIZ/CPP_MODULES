@@ -1,6 +1,6 @@
 NAME=animalbrain
 CC=c++
-CPPFLAGS=-Wall -Wextra -Werror -std=c++98
+CPPFLAGS=-Wall -Wextra -Werror -std=c++98 
 RM=rm -rf
 SOURCES = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 OBJECTS=$(SOURCES:.cpp=.o)

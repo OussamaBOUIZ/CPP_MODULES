@@ -12,7 +12,6 @@ class Brain {
 		Brain	&operator= ( const Brain & );
 		void	fillBrain( char **, int );
 		void	exposeBrain( void ) const;
-	private:
 		string	ideas[100];
 };
 

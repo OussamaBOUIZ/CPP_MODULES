@@ -2,6 +2,7 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
+/*
 int main ( int ac, char **av )
 {
 	Brain myBrain;
@@ -11,5 +12,42 @@ int main ( int ac, char **av )
 
 	Brain	yourBrain = myBrain;
 	yourBrain.exposeBrain();
+	return (0);
+}
+
+int main ( void )
+{
+	// Animal	*Flora1, *Flora2;
+	Cat	mycat;
+
+	std::cout << "-------------------------" << std::endl;
+	
+	Cat yourcat; // default constructor
+	yourcat = mycat; // copy assignment operator
+	
+	std::cout << "-------------------------" << std::endl;
+	Cat hisCat = yourcat; // copy constructor called 
+	std::cout << hisCat.getType() << std::endl;
+	while (1);
+	return (0);
+}
+
+*/
+
+/* ----------------------------------------------------- */
+/* ------------------       RENDU      ----------------- */
+/* ----------------------------------------------------- */
+
+int main ( void )
+{
+	Animal	*zoo[10];
+	
+	for (size_t i = 0; i < 10; i++)
+	{
+		if (i < 5)
+			zoo[i] = new Dog;
+		else
+			zoo[i] = new Cat;
+	}
 	return (0);
 }
