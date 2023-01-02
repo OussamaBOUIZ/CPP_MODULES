@@ -1,5 +1,10 @@
 #include "FragTrap.hpp"
 
+
+/* ----------------------------------------------------- */
+/* ------------------ CANONICAL FORM ------------------- */
+/* ----------------------------------------------------- */
+
 FragTrap::FragTrap(string name) : ClapTrap(name) {
     std::cout << "Constructing FragTrap "<< name << " ..." << std::endl;
     _hitPoints = 100;
@@ -33,6 +38,10 @@ FragTrap::FragTrap ( const FragTrap &obj ) : ClapTrap(obj)
 {
     *this = obj;
 }
+
+/* ----------------------------------------------------- */
+/* ------------------ MEMBER FUNCTIONS ----------------- */
+/* ----------------------------------------------------- */
 
 void    FragTrap::highFiveGuys( void )
 {

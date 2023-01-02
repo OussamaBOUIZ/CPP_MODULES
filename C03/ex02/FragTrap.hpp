@@ -11,4 +11,5 @@ class FragTrap : public ClapTrap {
 		FragTrap	&operator= ( const FragTrap & );
 		void	highFiveGuys ( void );
 };
+
 #endif

@@ -1,21 +1,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
-void	scenarioOne( ClapTrap &obj, unsigned int damage, unsigned int repairs )
-{
-	obj.takeDamage(damage);
-	obj.attack("Lion");
-	obj.beRepaired(repairs);
-}
 
-void	scenarioTwo ( ClapTrap &obj, unsigned int damage, size_t count )
-{
-	obj.takeDamage(damage);
-	for (size_t i = 0; i < count; i++)
-		obj.attack("Lion");
-}
-
-/*
 int main ( void )
 {
 	ScavTrap	Ant("Ant");
@@ -29,19 +15,9 @@ int main ( void )
 	AnotherAnt.guardGate();
 
 	ScavTrap CaterPillar("CaterPillar");
-
 	CaterPillar.attack("Ant");
 	Ant.beRepaired(256);
 	Ant.attack("CaterPillar");
 	return (0);
 }
-*/
 
-int main ( void )
-{
-	ScavTrap	Ant("Ant");
-
-	Ant.attack("Beetle");
-	Ant.guardGate();
-	return (0);
-}
