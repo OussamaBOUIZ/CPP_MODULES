@@ -10,7 +10,8 @@ class Brain {
 		~Brain ( void );
 		Brain ( const Brain & );
 		Brain	&operator= ( const Brain & );
-		void	fillBrain( char **, int );
+		void	fillBrain( void );
+		void	changeBrain ( void );
 		void	exposeBrain( void ) const;
 		string	ideas[100];
 };

@@ -14,9 +14,10 @@ Cat::Cat ( void )
 
 Cat::~Cat ( void )
 {
-	std::cout << "Cat Destroying ..." << std::endl;
+	std::cout << "Destroying Cat ..." << std::endl;
 	delete catBrain;	
 }
+
 Cat	&Cat::operator= ( const Cat &obj )
 {
 	std::cout << "Assignment operator called ..." << std::endl;
@@ -54,12 +55,18 @@ void	Cat::testing ( void ) const {
 	std::cout << "testing CAT..." << std::endl;
 }
 
-void	Cat::fillCatBrain( char **ideasArg, int numberOfIdeas )
+void	Cat::fillCatBrain( void )
 {
-	catBrain->fillBrain(ideasArg, numberOfIdeas);
+	catBrain->fillBrain();
+}
+
+void	Cat::changeCatBrain( void )
+{
+	catBrain->changeBrain();
 }
 
 void	Cat::exposeCatBrain ( void ) const
 {
+	std::cout << "😸 says : " << std::endl;
 	catBrain->exposeBrain();
 }

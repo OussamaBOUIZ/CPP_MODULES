@@ -32,7 +32,7 @@ Dog	&Dog::operator= ( const Dog &obj )
 
 Dog::Dog ( const Dog &obj )
 {
-	std::cout << "Copy Constructor of Cat called ..." << std::endl;
+	std::cout << "Copy Constructor of Dog called ..." << std::endl;
 	type = obj.type;
 	dogBrain = new Brain;
 	for (size_t i = 0; i < 100; i++)
@@ -48,12 +48,18 @@ void	Dog::makeSound ( void ) const
 	std::cout << "Dog Barking ..." << std::endl;
 }
 
-void	Dog::fillDogBrain( char **ideasArg, int numberOfIdeas )
+void	Dog::fillDogBrain( void )
 {
-	dogBrain->fillBrain(ideasArg, numberOfIdeas);
+	dogBrain->fillBrain();
+}
+
+void	Dog::changeDogBrain( void )
+{
+	dogBrain->changeBrain();
 }
 
 void	Dog::exposeDogBrain ( void ) const
 {
+	std::cout << "🐶 says : " << std::endl;
 	dogBrain->exposeBrain();
 }

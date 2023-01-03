@@ -13,7 +13,8 @@ class Cat: public Animal {
 		Cat	&operator= ( const Cat & );
 		void	makeSound ( void ) const;
 		void	testing ( void ) const ;
-		void	fillCatBrain ( char **, int );
+		void	fillCatBrain ( void );
+		void	changeCatBrain ( void );
 		void	exposeCatBrain ( void ) const;
 	private:
 		Brain	*catBrain;

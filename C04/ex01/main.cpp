@@ -2,41 +2,58 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-/*
-int main ( int ac, char **av )
+Cat	createSmartCat ( void )
 {
-	Brain myBrain;
+	Cat	Genius;
 
-	myBrain.fillBrain( av + 1, ac - 1 );
-	myBrain.exposeBrain();
+	Genius.fillCatBrain();
+	return (Genius);
+}
 
-	Brain	yourBrain = myBrain;
-	yourBrain.exposeBrain();
+Dog	createSmartDog ( void )
+{
+	Dog	Clever;
+
+	Clever.fillDogBrain();
+	return (Clever);
+}
+
+void	exposeSmartCatBrain ( Cat aCat ) { 	
+	aCat.exposeCatBrain();
+}
+
+void	exposeSmartDogBrain ( Dog aDog ) {
+	aDog.exposeDogBrain();
+}
+
+
+/*
+int main ( void )
+{
+	Dog	Clever = createSmartDog();
+	exposeSmartDogBrain( Clever );
+
+	Cat Genius = createSmartCat();
+	exposeSmartCatBrain( Genius );
+
 	return (0);
 }
 
 int main ( void )
 {
-	// Animal	*Flora1, *Flora2;
-	Cat	mycat;
+	Dog	Fast, Slow;
 
-	std::cout << "-------------------------" << std::endl;
-	
-	Cat yourcat; // default constructor
-	yourcat = mycat; // copy assignment operator
-	
-	std::cout << "-------------------------" << std::endl;
-	Cat hisCat = yourcat; // copy constructor called 
-	std::cout << hisCat.getType() << std::endl;
-	while (1);
+	Fast.fillDogBrain();
+	Slow.fillDogBrain();
+	Fast.exposeDogBrain();
+	Slow.exposeDogBrain();
+	// change Fast Brain
+	Fast.changeDogBrain();
+	Fast.exposeDogBrain();
+	Slow.exposeDogBrain();
 	return (0);
 }
-
 */
-
-/* ----------------------------------------------------- */
-/* ------------------       RENDU      ----------------- */
-/* ----------------------------------------------------- */
 
 int main ( void )
 {
@@ -50,10 +67,6 @@ int main ( void )
 			zoo[i] = new Cat;
 	}
 	for (size_t i = 0; i < 10; i++)
-	{
-		/* code */
 		delete zoo[i];
-	}
-	
 	return (0);
 }

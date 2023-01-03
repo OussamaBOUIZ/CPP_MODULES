@@ -11,7 +11,8 @@ class Dog: public Animal {
         Dog ( const Dog & );
         Dog &operator= ( const Dog & );
 		void	makeSound ( void ) const;
-		void	fillDogBrain ( char **, int );
+		void	fillDogBrain ( void );
+		void	changeDogBrain ( void );
 		void	exposeDogBrain ( void ) const;
 		Brain	*dogBrain;
 	private:
