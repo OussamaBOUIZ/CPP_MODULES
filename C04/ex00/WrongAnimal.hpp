@@ -6,7 +6,6 @@ typedef std::string string;
 
 class WrongAnimal {
 	public:
-		WrongAnimal ( string type );
 		WrongAnimal ( void );
 		~WrongAnimal ( void );
 		WrongAnimal ( const WrongAnimal & );

@@ -6,14 +6,13 @@ typedef std::string string;
 
 class Animal {
     public:
-		Animal ( string type );
+		// Animal ( string type );
         Animal ( void );
-        ~Animal ( void );
+    	virtual ~Animal ( void );
         Animal ( const Animal & );
         Animal  &operator= ( const Animal & );
-		virtual void	makeSound ( void ) const;
 		string	getType ( void ) const;
-		virtual void	testing( void ) const;
+		virtual void	makeSound ( void ) const;
     protected:
         string type;
 };

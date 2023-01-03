@@ -1,8 +1,9 @@
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal ( string type ) : type (type) {
-    std::cout << "Constructing WrongAnimal of type "<< type << std::endl;
-}
+/* ----------------------------------------------------- */
+/* ------------------ CANONICAL FORM ------------------- */
+/* ----------------------------------------------------- */
+
 
 WrongAnimal::WrongAnimal ( void )
 {
@@ -26,6 +27,10 @@ WrongAnimal::WrongAnimal ( const WrongAnimal &obj)
 	std::cout << "Copy constructor of WrongAnimal called ..." << std::endl;
     *this = obj;
 }
+
+/* ----------------------------------------------------- */
+/* ------------------ MEMBER FUNCTIONS ----------------- */
+/* ----------------------------------------------------- */
 
 void	WrongAnimal::makeSound ( void ) const
 {

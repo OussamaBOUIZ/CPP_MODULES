@@ -1,8 +1,12 @@
 #include "Animal.hpp"
 
-Animal::Animal ( string type ) : type (type) {
-    std::cout << "Constructing Animal of type "<< type << std::endl;
-}
+/* ----------------------------------------------------- */
+/* ------------------ CANONICAL FORM ------------------- */
+/* ----------------------------------------------------- */
+
+// Animal::Animal ( string type ) : type (type) {
+//     std::cout << "Constructing Animal of type "<< type << std::endl;
+// }
 
 Animal::Animal ( void )
 {
@@ -27,16 +31,16 @@ Animal::Animal ( const Animal &obj)
     *this = obj;
 }
 
+/* ----------------------------------------------------- */
+/* ------------------ MEMBER FUNCTIONS ----------------- */
+/* ----------------------------------------------------- */
+
 void	Animal::makeSound ( void ) const
 {
 	std::cout << "Animal Sound ..." << std::endl;
 }
 
-string	Animal::getType( void ) const{
-	return (type);
-}
-
-void	Animal::testing ( void ) const 
+string	Animal::getType( void ) const
 {
-	std::cout << "<<<<<< Testing Animal >>>>>>>" << std::endl;
+	return (type);
 }

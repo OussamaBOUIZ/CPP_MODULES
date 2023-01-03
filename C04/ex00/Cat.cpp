@@ -6,13 +6,12 @@
 Cat::Cat ( void )
 {
 	std::cout << "Default Constructing Cat ..." << std::endl;
-	type = "Cat";
+	type = "Cat 😸";
 }
 
 Cat::~Cat ( void )
 {
 	std::cout << "Cat Destroying ..." << std::endl;
-	
 }
 
 Cat	&Cat::operator= ( const Cat &obj )
@@ -33,10 +32,5 @@ Cat::Cat ( const Cat &obj )
 
 void	Cat::makeSound ( void ) const
 {
-	std::cout << "Cat mewing ..." << std::endl;
-}
-
-
-void	Cat::testing ( void ) const {
-	std::cout << "testing CAT..." << std::endl;
+	std::cout << "The Cat mew ..." << std::endl;
 }

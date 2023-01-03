@@ -13,5 +13,4 @@ class Cat: public Animal {
 		void	testing ( void ) const ;
 };
 
-
 #endif
