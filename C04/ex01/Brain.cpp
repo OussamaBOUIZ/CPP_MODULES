@@ -16,8 +16,10 @@ Brain::~Brain ( void )
 	std::cout << "Destroying Brain..." << std::endl;
 }
 
+
 Brain	&Brain::operator= ( const Brain &obj )
 {
+	std::cout << "Brain Assignment operator called ..." << std::endl;
 	for (int i = 0; i < 100; i++)
 		ideas[i] = obj.ideas[i];
 	return (*this);

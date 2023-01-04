@@ -20,13 +20,12 @@ Cat::~Cat ( void )
 
 Cat	&Cat::operator= ( const Cat &obj )
 {
-	std::cout << "Assignment operator called ..." << std::endl;
+	std::cout << "CAT Assignment operator called ..." << std::endl;
 	type = obj.type;
 	if (catBrain)
 		delete catBrain;
 	catBrain = new Brain;
-	for (size_t i = 0; i < 100; i++)
-		catBrain->ideas[i] = obj.catBrain->ideas[i];
+	*catBrain = *(obj.catBrain);
 	return (*this);
 }
 
@@ -35,8 +34,7 @@ Cat::Cat ( const Cat &obj )
 	std::cout << "Copy Constructor of Cat called ..." << std::endl;
 	type = obj.type;
 	catBrain = new Brain;
-	for (size_t i = 0; i < 100; i++)
-		catBrain->ideas[i] = obj.catBrain->ideas[i];
+	*catBrain = *(obj.catBrain);
 }
 
 /* ----------------------------------------------------- */

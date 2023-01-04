@@ -20,13 +20,12 @@ Dog::~Dog ( void )
 
 Dog	&Dog::operator= ( const Dog &obj )
 {
-	std::cout << "Assignment operator called ..." << std::endl;
+	std::cout << "DOG Assignment operator called ..." << std::endl;
 	type = obj.type;
 	if (dogBrain)
 		delete dogBrain;
 	dogBrain = new Brain;
-	for (size_t i = 0; i < 100; i++)
-		dogBrain->ideas[i] = obj.dogBrain->ideas[i];
+	*dogBrain = *(obj.dogBrain);
 	return (*this);
 }
 
@@ -35,8 +34,7 @@ Dog::Dog ( const Dog &obj )
 	std::cout << "Copy Constructor of Dog called ..." << std::endl;
 	type = obj.type;
 	dogBrain = new Brain;
-	for (size_t i = 0; i < 100; i++)
-		dogBrain->ideas[i] = obj.dogBrain->ideas[i];
+	*dogBrain = *(obj.dogBrain);
 }
 
 /* ----------------------------------------------------- */

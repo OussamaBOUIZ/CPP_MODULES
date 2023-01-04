@@ -14,8 +14,8 @@ class Dog: public Animal {
 		void	fillDogBrain ( void );
 		void	changeDogBrain ( void );
 		void	exposeDogBrain ( void ) const;
-		Brain	*dogBrain;
 	private:
+		Brain	*dogBrain;
 };
 
 #endif

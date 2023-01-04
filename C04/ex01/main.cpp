@@ -33,6 +33,10 @@ int main ( void )
 	Dog	Clever = createSmartDog();
 	exposeSmartDogBrain( Clever );
 
+	Dog g;
+
+	g = Clever;
+
 	Cat Genius = createSmartCat();
 	exposeSmartCatBrain( Genius );
 
@@ -59,6 +63,7 @@ int main ( void )
 {
 	Animal	*zoo[10];
 	
+	// creating objects
 	for (size_t i = 0; i < 10; i++)
 	{
 		if (i < 5)
@@ -66,6 +71,12 @@ int main ( void )
 		else
 			zoo[i] = new Cat;
 	}
+	
+	// Using objects
+	for (size_t i = 0; i < 10; i++)
+		zoo[i]->makeSound();
+
+	// deleting objects
 	for (size_t i = 0; i < 10; i++)
 		delete zoo[i];
 	return (0);
