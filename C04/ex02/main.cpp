@@ -1,50 +1,48 @@
-#include "Animal.hpp"
+#include "AbstractAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-/*
-int main ( int ac, char **av )
+
+Cat	createSmartCat ( void )
 {
-	Brain myBrain;
+	Cat	Genius;
 
-	myBrain.fillBrain( av + 1, ac - 1 );
-	myBrain.exposeBrain();
+	Genius.fillCatBrain();
+	return (Genius);
+}
 
-	Brain	yourBrain = myBrain;
-	yourBrain.exposeBrain();
-	return (0);
+Dog	createSmartDog ( void )
+{
+	Dog	Clever;
+
+	Clever.fillDogBrain();
+	return (Clever);
+}
+
+void	exposeSmartCatBrain ( Cat aCat ) { 	
+	aCat.exposeCatBrain();
+}
+
+void	exposeSmartDogBrain ( Dog aDog ) {
+	aDog.exposeDogBrain();
 }
 
 int main ( void )
 {
-	// Animal	*Flora1, *Flora2;
-	Cat	mycat;
+	// This won't compile
+	/*
+		AbstractAnimal myAnimal;
+	*/
+	// This compiles
+	Dog	Petty = createSmartDog();
 
-	std::cout << "-------------------------" << std::endl;
-	
-	Cat yourcat; // default constructor
-	yourcat = mycat; // copy assignment operator
-	
-	std::cout << "-------------------------" << std::endl;
-	Cat hisCat = yourcat; // copy constructor called 
-	std::cout << hisCat.getType() << std::endl;
-	while (1);
+	std::cout << Petty.getType() << std::endl;
+
+	Cat	Kitty = createSmartCat();
+	std::cout << Kitty.getType() << std::endl;
+
+	exposeSmartDogBrain(Petty);
+	exposeSmartCatBrain(Kitty);
 	return (0);
-}
-
-*/
-
-/* ----------------------------------------------------- */
-/* ------------------       RENDU      ----------------- */
-/* ----------------------------------------------------- */
-
-int main ( void )
-{
-	Cat mycat;
-
-	Animal	*catti = new Cat;
-
-
-	std::cout << catti->getType() << std::endl;
-	return (0);
+	
 }
