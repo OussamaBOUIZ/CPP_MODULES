@@ -11,8 +11,10 @@ class Bureaucrat {
 		~Bureaucrat ( void );
 		Bureaucrat ( const Bureaucrat & );
 		Bureaucrat	&operator= ( const Bureaucrat & );
-		class GradeToHighException;
-		class GradeToLowException;
+		const string getName ( void ) const;
+		int	getGrade ( void ) const;
+		class GradeTooHighException;
+		class GradeTooLowException;
 	private:
 		const string _name;
 		int	_grade;
