@@ -1,9 +1,12 @@
 #ifndef __BUREAUCRAT_H__
 # define __BUREAUCRAT_H__
 # include <iostream>
+# include <exception>
 # include "Form.hpp"
 typedef std::string string;
 typedef std::ostream ostream;
+
+class	Form;
 
 /* BUREAUCRAT INTERFACE */
 class Bureaucrat {

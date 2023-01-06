@@ -20,7 +20,7 @@ class Bureaucrat::GradeTooLowException: public std::exception {
 
 Bureaucrat::Bureaucrat ( int grade, string name ): _name(name)
 {
-	std::cout << "Constructing Bureaucrat "<< _name << std::endl;
+	std::cout << "---           Bureaucrat Constructor called" << std::endl;
 	if (grade < 1)
 		throw GradeTooHighException();
 	else if (grade > 150)
@@ -28,10 +28,12 @@ Bureaucrat::Bureaucrat ( int grade, string name ): _name(name)
 	_grade = grade;
 }
 
-Bureaucrat::Bureaucrat ( void ) : _name("UNNAMED"), _grade(150) {}
+Bureaucrat::Bureaucrat ( void ) : _name("UNNAMED"), _grade(150) {
+	std::cout << "---           Bureaucrat Default Constructor called" << std::endl;
+}
 
 Bureaucrat::~Bureaucrat ( void ) {
-	std::cout << "Bureaucrat Destructor Called" << std::endl;
+	std::cout << "---           Bureaucrat Destructor called" << std::endl;
 }
 
 Bureaucrat	&Bureaucrat::operator= ( const Bureaucrat &obj )

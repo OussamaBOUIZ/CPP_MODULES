@@ -1,16 +1,17 @@
 # include "Form.hpp"
+
 /* ----------------------------------------------------- */
 /* ------------------    EXCEPTIONS    ----------------- */
 /* ----------------------------------------------------- */
 
 class Form::GradeTooHighException: public std::exception {
 	public:
-		const char	*what() throw() { return ("The Grade is Too High"); } 
+		const char	*what() const throw() { return ("The Grade is Too High to Sign the Form"); } 
 };
 
 class Form::GradeTooLowException: public std::exception {
 	public:
-		const char	*what() throw() { return ("The Grade is Too Low"); } 
+		const char	*what() const throw() { return ("The Grade is Too Low to Sign The Form"); } 
 };
 /* ----------------------------------------------------- */
 /* ------------------ CANONICAL FORM ------------------- */
@@ -21,6 +22,7 @@ Form::Form ( string name, int gradeToSign, int gradeToExecute )
 	  _requiredGradeToSign(gradeToSign),
 	  _requiredGradeToExecute(gradeToExecute)
 {
+	std::cout << "---           Form Constructor called" << std::endl;
 	_signingState = false;
 }
 
@@ -29,23 +31,29 @@ Form::Form ( void )
 	  _requiredGradeToSign(75),
 	  _requiredGradeToExecute(75)
 {
+	std::cout << "---           Form Default Constructor called" << std::endl;
 	_signingState = false;
 }
 
-Form::~Form ( void )
+Form::~Form ( void ) {}
+
+Form::Form ( const Form &obj )
+		:	_name(obj._name),
+			_requiredGradeToSign(obj._requiredGradeToSign),
+			_requiredGradeToExecute(obj._requiredGradeToExecute)
 {
-	
+	std::cout << "---           Form Copy Constructor called" << std::endl;
+	_signingState = obj._signingState;	
+	*this = obj;
 }
 
 Form	&Form::operator= ( const Form &obj )
 {
+	std::cout << "---           Form Assignment Operator called" << std::endl;
+	if (this == &obj)
+		return (*this);
+	*this = Form(obj);
 	return (*this);
-}
-
-Form::Form ( const Form &obj )
-{	
-
-	*this = obj;
 }
 
 
@@ -55,8 +63,10 @@ Form::Form ( const Form &obj )
 
 const string	Form::getName ( void ) const { return (_name);}
 bool			Form::getSigningState ( void ) const { return (_signingState);}
-const int		Form::getRequiredGradeToSign ( void ) const { return (_requiredGradeToSign); };
-const int		Form::getRequiredGradeToExecute ( void ) const { return (_requiredGradeToExecute); };
+int				Form::getRequiredGradeToSign ( void ) const { return (_requiredGradeToSign); };
+int				Form::getRequiredGradeToExecute ( void ) const { return (_requiredGradeToExecute); };
+
+
 void			Form::beSigned( Bureaucrat &aBureaucrat )
 {
 	if (aBureaucrat.getGrade() <= _requiredGradeToSign )
@@ -73,8 +83,8 @@ void			Form::beSigned( Bureaucrat &aBureaucrat )
 ostream	&operator<< ( ostream &out, const Form &obj )
 {
 	std::cout << "Form name : " << obj.getName() << std::endl;
-	std::cout << "Form Signing State : " << obj.getSigningState() << std::endl;
+	std::cout << "Form Signing State : " << (obj.getSigningState() ? "SIGNED" : "UNSIGNED") << std::endl;
 	std::cout << "Form Required Grade To Sign : " << obj.getRequiredGradeToSign() << std::endl;
-	std::cout << "Form Required Grade To Execute : " << obj.getRequiredGradeToExecute() << std::endl;
+	std::cout << "Form Required Grade To Execute : " << obj.getRequiredGradeToExecute();
 	return (out);
 }
