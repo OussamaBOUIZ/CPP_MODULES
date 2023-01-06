@@ -6,7 +6,7 @@
 typedef std::string string;
 typedef std::ostream ostream;
 
-class	Form;
+class	Form; // This is called a forward 
 
 /* BUREAUCRAT INTERFACE */
 class Bureaucrat {
@@ -16,13 +16,14 @@ class Bureaucrat {
 		~Bureaucrat ( void );
 		Bureaucrat ( const Bureaucrat & );
 		Bureaucrat	&operator= ( const Bureaucrat & );
-		const string getName ( void ) const;
-		int	getGrade ( void ) const;
-		void	incrementGrade( void );
-		void	decrementGrade( void );
-		void	signForm( Form & );
-		class GradeTooHighException;
-		class GradeTooLowException;
+		const string	getName ( void ) const;
+		int				getGrade ( void ) const;
+		void			incrementGrade( void );
+		void			decrementGrade( void );
+		void			signForm( Form & );
+		void			executeForm( Form const & );
+		class 			GradeTooHighException;
+		class 			GradeTooLowException;
 	private:
 		const string _name;
 		int	_grade;

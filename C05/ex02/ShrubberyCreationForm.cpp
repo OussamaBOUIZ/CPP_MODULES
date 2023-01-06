@@ -1,7 +1,21 @@
 # include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm ( string target, string name )
-			: Form(name, 145, 137),
+/* ----------------------------------------------------- */
+/* ------------------    EXCEPTIONS    ----------------- */
+/* ----------------------------------------------------- */
+
+
+class ShrubberyCreationForm::GradeTooLowException: public std::exception {
+	public:
+		const char	*what() const throw() { return ("To Be Determined"); } 
+};
+
+/* ----------------------------------------------------- */
+/* ------------------ CANONICAL FORM ------------------- */
+/* ----------------------------------------------------- */
+
+ShrubberyCreationForm::ShrubberyCreationForm ( string target)
+			: Form("Shrubbery Creation Form", 145, 137),
 			  _target(target)
 {
 	std::cout << "---           ShrubberyCreationForm Default Constructor called" << std::endl;
@@ -33,4 +47,32 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator= ( const ShrubberyCreatio
 		return (*this);
 	*this = ShrubberyCreationForm(obj);
 	return (*this);
+}
+
+/* ----------------------------------------------------- */
+/* ------------------ MEMBER FUNCTIONS ----------------- */
+/* ----------------------------------------------------- */
+
+
+void	ShrubberyCreationForm::makeShrubbery ( void ) const
+{
+	std::ofstream	place;
+
+	place.open(_target + "_shrubbery");
+	place << "    ^   " << std::endl;	
+	place << "   / \\  " << std::endl;	
+	place << "  /   \\  " << std::endl;	
+	place << " /     \\  " << std::endl;	
+	place << " -------  " << std::endl;	
+	place << "   | |  " << std::endl;	
+	place << ".........  " << std::endl;	
+}
+
+void	ShrubberyCreationForm::execute( Bureaucrat const &executor ) const
+{
+	if (_signingState == false or\
+		executor.getGrade() > this->getRequiredGradeToSign())
+		throw GradeTooLowException();
+	else
+		makeShrubbery();
 }

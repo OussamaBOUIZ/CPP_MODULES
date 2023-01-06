@@ -10,6 +10,16 @@ typedef std::ostream ostream;
 class	Bureaucrat; // this solves the problem of circular dependency 
 // we should a deep look on this one 
 
+class GradeTooHighException: public std::exception {
+	public:
+		const char	*what() const throw() { return ("The Grade is Too High to Sign the Form"); } 
+};
+
+class GradeTooLowException: public std::exception {
+	public:
+		const char	*what() const throw() { return ("The Grade is Too Low to Sign The Form"); } 
+};
+
 class Form {
 	public:
 		Form ( string name, int gradeToSign, int gradeToExecute );
@@ -17,13 +27,14 @@ class Form {
 		~Form ( void );
 		Form ( const Form & );
 		Form	&operator= ( const Form & );
-		class	GradeTooHighException;
-		class	GradeTooLowException;
+		GradeTooHighException	highException;
+		GradeTooLowException	lowException;
 		const string	getName ( void ) const;
 		bool			getSigningState ( void ) const;
-		int		getRequiredGradeToSign ( void ) const;
-		virtual int		getRequiredGradeToExecute ( void ) const = 0;
+		int				getRequiredGradeToSign ( void ) const;
+	    int				getRequiredGradeToExecute ( void ) const;
 		void			beSigned( Bureaucrat & );
+		virtual void	execute( Bureaucrat const & ) const = 0;
 	protected:
 		const string	_name;
 		bool			_signingState;

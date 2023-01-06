@@ -2,7 +2,7 @@ NAME=manyforms
 CC=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98
 RM=rm -rf
-SOURCES = main.cpp Bureaucrat.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp PresidentialPardonForm.cpp
+SOURCES = main.cpp Bureaucrat.cpp RobotomyRequestForm.cpp Form.cpp  ShrubberyCreationForm.cpp PresidentialPardonForm.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 all : $(NAME)
