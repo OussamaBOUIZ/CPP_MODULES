@@ -4,15 +4,12 @@
 /* ------------------    EXCEPTIONS    ----------------- */
 /* ----------------------------------------------------- */
 
-class Bureaucrat::GradeTooHighException: public std::exception {
-	public:
-		const char	*what() const throw() { return ("Too High Grade Exception");}
-};
-
-class Bureaucrat::GradeTooLowException: public std::exception {
-	public:
-		const char	*what() const throw() { return ("Too Low Grade Exception");}
-};
+const char	*GradeTooHighException::what() const throw() {
+	 return ("Too High Grade Exception");
+}
+const char	*GradeTooLowException::what() const throw() {
+	 return ("Too Low Grade Exception");
+}
 
 /* ----------------------------------------------------- */
 /* ------------------ CANONICAL FORM ------------------- */
@@ -77,6 +74,8 @@ void		Bureaucrat::signForm( Form &aForm )
 	else
 		std::cout << _name << " couldn't sign " << aForm.getName() << " because of a reason." << std::endl;
 }
+
+
 
 /* ----------------------------------------------------- */
 /* ------------------     OPERATOR     ----------------- */

@@ -4,10 +4,14 @@
 int	main()
 {
 	try {
-		Bureaucrat	InvalidBureaucrat(400, "Low Servant");	
 		Bureaucrat	AnotherInvalidBureaucrat(-50, "Impossibly High Servant");	
+		Bureaucrat	InvalidBureaucrat(400, "Low Servant");	
 	}
-	catch ( const std::exception& excep)
+	catch ( const GradeTooLowException& excep) std::exception
+	{
+		std::cerr << excep.what() << std::endl;
+	}
+	catch ( const GradeTooHighException& excep)
 	{
 		std::cerr << excep.what() << std::endl;
 	}

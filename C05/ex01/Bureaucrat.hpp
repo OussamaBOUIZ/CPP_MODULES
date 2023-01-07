@@ -6,6 +6,15 @@
 typedef std::string string;
 typedef std::ostream ostream;
 
+class GradeTooHighException: public std::exception {
+	public:
+		const char	*what() const throw();
+};
+
+class GradeTooLowException: public std::exception {
+	public:
+		const char	*what() const throw();
+};
 class	Form;
 
 /* BUREAUCRAT INTERFACE */

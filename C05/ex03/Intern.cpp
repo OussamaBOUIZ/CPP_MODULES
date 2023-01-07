@@ -2,6 +2,7 @@
 # include "ShrubberyCreationForm.hpp"
 # include "RobotomyRequestForm.hpp"
 # include "PresidentialPardonForm.hpp"
+# include <new>
 
 /* ----------------------------------------------------- */
 /* ------------------ CANONICAL FORM ------------------- */

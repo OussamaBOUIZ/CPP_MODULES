@@ -10,6 +10,7 @@ typedef std::ostream ostream;
 class	Bureaucrat; // this solves the problem of circular dependency 
 // we should a deep look on this one 
 
+// should be move to .cpp
 class GradeTooHighException: public std::exception {
 	public:
 		const char	*what() const throw() { return ("The Grade is Too High to Sign the Form"); } 
