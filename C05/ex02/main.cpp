@@ -48,5 +48,32 @@ int	main( void )
 	}
 	return 0;
 }
+
 */
+// TESTING PresidentialPardonForm
+
+int main ( void )
+{
+	try {
+		Bureaucrat				VicePresident(10, "Mr Vice President");
+		Bureaucrat				President(4, "President");
+		Bureaucrat				UnresponsibleEmployee(133, "Mr Unresponsible");
+
+		PresidentialPardonForm	ForgivenessForm(UnresponsibleEmployee.getName());
+
+		ForgivenessForm.beSigned(VicePresident);
+		std::cout << ForgivenessForm << std::endl;
+		VicePresident.signForm(ForgivenessForm);
+		President.executeForm(ForgivenessForm);
+		std::cout << VicePresident << std::endl;
+		std::cout << President << std::endl;
+			
+	}
+	catch ( const std::exception& excep)
+	{
+		std::cerr << excep.what() << std::endl;
+	}
+	throw GradeTooHighException();
+	return (0);
+}
 
