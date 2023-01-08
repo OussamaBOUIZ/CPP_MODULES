@@ -48,17 +48,17 @@ int				Bureaucrat::getGrade ( void ) const { return (_grade) ; }
 
 void			Bureaucrat::incrementGrade ( void )
 {
-	_grade--;
-	if (_grade < 1) 
+	if (_grade <= 1) 
 		throw HighGrade;
+	_grade--;
 	std::cout << "Incrementing " << _name << " grade to " << _grade << std::endl;
 }
 
 void			Bureaucrat::decrementGrade ( void )
 {
-	_grade++;
-	if (_grade > 150) 
+	if (_grade >= 150) 
 		throw LowGrade;
+	_grade++;
 	std::cout << "Decrementing " << _name << " grade to " << _grade << std::endl;
 }
 

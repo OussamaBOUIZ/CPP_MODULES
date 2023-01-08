@@ -38,15 +38,13 @@ int	main( void )
 		// Introducing Forms
 		std::cout << SummaryReport << std::endl;
 		std::cout << ProjectProposalAgreement << std::endl;
-		//Insertion operator with the Form class
-		std::cout << SummaryReport << std::endl;;
-		std::cout << assistant << std::endl;
+	
 		ProjectProposalAgreement.beSigned(HighLevelExecutive);
 		HighLevelExecutive.signForm(ProjectProposalAgreement);
 		SummaryReport.beSigned(departmentHead);
 		departmentHead.signForm(SummaryReport);
 		std::cout << SummaryReport << std::endl;;
-		SummaryReport.beSigned(assistant);
+		SummaryReport.beSigned(departmentHead);
 		assistant.signForm(SummaryReport);
 	}
 	catch ( const std::exception& excep )
@@ -55,5 +53,6 @@ int	main( void )
 	}
 	return 0;
 }
+
 
 

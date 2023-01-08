@@ -6,7 +6,7 @@
 
 class PresidentialPardonForm::GradeTooLowException: public std::exception {
 	public:
-		const char	*what() const throw() { return ("To Be Determined"); } 
+		const char	*what() const throw() { return ("Too Low Grade"); } 
 };
 
 PresidentialPardonForm::PresidentialPardonForm ( string target)
@@ -55,7 +55,7 @@ void	PresidentialPardonForm::announcePardon( void ) const
 void	PresidentialPardonForm::execute( Bureaucrat const &executor ) const
 {
 	if (_signingState == false or\
-		executor.getGrade() > this->getRequiredGradeToSign())
+		executor.getGrade() > this->getRequiredGradeToExecute())
 		throw GradeTooLowException();
 	else
 		announcePardon();

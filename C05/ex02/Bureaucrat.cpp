@@ -54,28 +54,38 @@ Bureaucrat::Bureaucrat ( const Bureaucrat &obj ) : _name ( obj._name)
 const string	Bureaucrat::getName ( void ) const { return (_name) ; }
 int				Bureaucrat::getGrade ( void ) const { return (_grade) ; }
 
+
 void			Bureaucrat::incrementGrade ( void )
 {
-	_grade--;
-	if (_grade < 1) 
+	if (_grade <= 1) 
 		throw HighGrade;
+	_grade--;
 	std::cout << "Incrementing " << _name << " grade to " << _grade << std::endl;
 }
 
 void			Bureaucrat::decrementGrade ( void )
 {
-	_grade++;
-	if (_grade > 150) 
+	if (_grade >= 150) 
 		throw LowGrade;
+	_grade++;
 	std::cout << "Decrementing " << _name << " grade to " << _grade << std::endl;
 }
 
+
 void		Bureaucrat::signForm( Form &aForm )
 {
-	if (aForm.getSigningState() == true)
-		std::cout << _name << " signed " << aForm.getName() << std::endl;
-	else
-		std::cout << _name << " couldn't sign " << aForm.getName() << " because of a reason." << std::endl;
+	try {
+		
+		if (aForm.getSigningState() == true)
+		{
+			aForm.beSigned(*this);
+			std::cout << _name << " signed " << aForm.getName() << std::endl;
+		}
+	}
+	catch ( const std::exception& excep)
+	{
+		std::cout << _name << " couldn't sign " << aForm.getName() << " because " <<  excep.what() << "." << std::endl;
+	}
 }
 
 void	Bureaucrat::executeForm( Form const &form )
@@ -85,7 +95,7 @@ void	Bureaucrat::executeForm( Form const &form )
 	}
 	catch ( const std::exception& excep)
 	{
-		std::cerr << excep.what() << std::endl;
+		std::cerr <<_name <<" cannot execute " << form.getName() << " because of a "<< excep.what() << std::endl;
 	}
 	std::cout << _name << " executed " << form.getName() << std::endl;
 }

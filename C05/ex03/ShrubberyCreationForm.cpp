@@ -59,6 +59,11 @@ void	ShrubberyCreationForm::makeShrubbery ( void ) const
 	std::ofstream	place;
 
 	place.open(_target + "_shrubbery");
+	if (!place)
+	{
+		std::cerr << "INVALID FILE" << std::endl;
+		exit (0);
+	}
 	place << "    ^   " << std::endl;	
 	place << "   / \\  " << std::endl;	
 	place << "  /   \\  " << std::endl;	

@@ -6,7 +6,7 @@
 
 class PresidentialPardonForm::GradeTooLowException: public std::exception {
 	public:
-		const char	*what() const throw() { return ("To Be Determined"); } 
+		const char	*what() const throw() { return ("Too Low Grade"); } 
 };
 
 PresidentialPardonForm::PresidentialPardonForm ( string target)

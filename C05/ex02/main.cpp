@@ -5,7 +5,6 @@
 # include "RobotomyRequestForm.hpp"
 
 // Testing ShrubberyCreationForm by Public Servants
-/*
 int	main( void )
 {
 	try {
@@ -26,6 +25,7 @@ int	main( void )
 	}
 	return 0;
 }
+/*
 
 // Testing RobotomyRequestForm
 
@@ -51,7 +51,6 @@ int	main( void )
 }
 
 // TESTING PresidentialPardonForm
-*/
 
 int main ( void )
 {
@@ -76,3 +75,25 @@ int main ( void )
 	}
 	return (0);
 }
+
+
+int	main( void )
+{
+	try {
+		Bureaucrat				VicePresident(10, "Mr Vice President");
+		Bureaucrat				UnresponsibleEmployee(24, "Mr Unresponsible");
+
+		PresidentialPardonForm	ForgivenessForm(UnresponsibleEmployee.getName());
+		
+		ForgivenessForm.beSigned(UnresponsibleEmployee);
+		UnresponsibleEmployee.signForm(ForgivenessForm);
+		UnresponsibleEmployee.executeForm(ForgivenessForm);
+
+	}
+	catch ( const std::exception& excep)
+	{
+		std::cerr << excep.what() << std::endl;
+	}
+	return 0;
+}
+*/

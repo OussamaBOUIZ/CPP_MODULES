@@ -65,7 +65,7 @@ void	RobotomyRequestForm::robotomize( void ) const
 void	RobotomyRequestForm::execute( Bureaucrat const &executor ) const
 {
 	if (_signingState == false or\
-		executor.getGrade() > this->getRequiredGradeToSign())
+		executor.getGrade() > this->getRequiredGradeToExecute())
 		throw GradeTooLowException();
 	else
 		robotomize();

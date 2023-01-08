@@ -5,10 +5,10 @@
 /* ----------------------------------------------------- */
 
 const char	*GradeTooHighException::what() const throw() {
-	 return ("Too High Grade Exception");
+	 return ("Too High Grade");
 }
 const char	*GradeTooLowException::what() const throw() {
-	 return ("Too Low Grade Exception");
+	 return ("Too Low Grade");
 }
 /* ----------------------------------------------------- */
 /* ------------------ CANONICAL FORM ------------------- */
