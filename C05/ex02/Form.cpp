@@ -3,8 +3,12 @@
 /* ----------------------------------------------------- */
 /* ------------------    EXCEPTIONS    ----------------- */
 /* ----------------------------------------------------- */
-
-
+const char	*GradeTooHighException::what() const throw() {
+	 return ("The Grade is Too High ");
+}
+const char	*GradeTooLowException::what() const throw() {
+	 return ("The Grade is Too Low ");
+}
 
 /* ----------------------------------------------------- */
 /* ------------------ CANONICAL FORM ------------------- */

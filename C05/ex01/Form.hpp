@@ -2,14 +2,23 @@
 # define __FORM_H__
 # include <iostream>
 # include <exception>
-# include "Bureaucrat.hpp"
 
 typedef std::string string;
 typedef std::ostream ostream;
 
-class	Bureaucrat; // this solves the problem of circular dependency 
-// we should a deep look on this one 
+class GradeTooHighException: public std::exception
+{
+	public:
+		const char	*what() const throw();
+};
 
+class GradeTooLowException: public std::exception {
+	public:
+		const char	*what() const throw();
+};
+# include "Bureaucrat.hpp"
+
+class	Bureaucrat; 
 class Form {
 	public:
 		Form ( string name, int gradeToSign, int gradeToExecute );
@@ -17,8 +26,8 @@ class Form {
 		~Form ( void );
 		Form ( const Form & );
 		Form	&operator= ( const Form & );
-		class	GradeTooHighException;
-		class	GradeTooLowException;
+		GradeTooHighException HighGrade;
+		GradeTooLowException  LowGrade;
 		const string	getName ( void ) const;
 		bool			getSigningState ( void ) const;
 		int		getRequiredGradeToSign ( void ) const;

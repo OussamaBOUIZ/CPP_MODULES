@@ -28,6 +28,8 @@ Bureaucrat::~Bureaucrat ( void ) {
 
 Bureaucrat	&Bureaucrat::operator= ( const Bureaucrat &obj )
 {
+	if (this == &obj)
+		return (*this);
 	_grade = obj._grade;
 	return (*this);
 }
@@ -59,6 +61,7 @@ void			Bureaucrat::decrementGrade ( void )
 		throw LowGrade;
 	std::cout << "Decrementing " << _name << " grade to " << _grade << std::endl;
 }
+
 ostream	&operator<< ( ostream &out, const Bureaucrat &obj)
 {
 	std::cout << obj.getName() << ", bureaucrat grade " << obj.getGrade();

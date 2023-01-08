@@ -3,8 +3,12 @@
 /* ----------------------------------------------------- */
 /* ------------------    EXCEPTIONS    ----------------- */
 /* ----------------------------------------------------- */
-
-
+const char	*GradeTooHighException::what() const throw() {
+	 return ("The Grade is Too High ");
+}
+const char	*GradeTooLowException::what() const throw() {
+	 return ("The Grade is Too Low ");
+}
 
 /* ----------------------------------------------------- */
 /* ------------------ CANONICAL FORM ------------------- */
@@ -30,22 +34,22 @@ Form::Form ( void )
 
 Form::~Form ( void ) {}
 
-// Form::Form ( const Form &obj )
-// 		:	_name(obj._name),
-// 			_requiredGradeToSign(obj._requiredGradeToSign),
-// 			_requiredGradeToExecute(obj._requiredGradeToExecute)
-// {
-// 	// std::cout << "---           Form Copy Constructor called" << std::endl;
-// 	// _signingState = obj._signingState;	
-// 	// *this = obj;
-// }
+Form::Form ( const Form &obj )
+		:	_name(obj._name),
+			_requiredGradeToSign(obj._requiredGradeToSign),
+			_requiredGradeToExecute(obj._requiredGradeToExecute)
+{
+	// std::cout << "---           Form Copy Constructor called" << std::endl;
+	// _signingState = obj._signingState;	
+	// *this = obj;
+}
 
 // Form	&Form::operator= ( const Form &obj )
 // {
-// 	// std::cout << "---           Form Assignment Operator called" << std::endl;
-// 	// if (this == &obj)
-// 	// 	return (*this);
-// 	*this = obj;
+// 	std::cout << "---           Form Assignment Operator called" << std::endl;
+// 	if (this == &obj)
+// 		return (*this);
+// 	*this = Form(obj);
 // 	return (*this);
 // }
 

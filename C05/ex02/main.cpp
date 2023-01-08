@@ -26,6 +26,7 @@ int	main( void )
 	}
 	return 0;
 }
+
 // Testing RobotomyRequestForm
 
 int	main( void )
@@ -49,8 +50,8 @@ int	main( void )
 	return 0;
 }
 
-*/
 // TESTING PresidentialPardonForm
+*/
 
 int main ( void )
 {
@@ -73,8 +74,5 @@ int main ( void )
 	{
 		std::cerr << excep.what() << std::endl;
 	}
-	throw GradeTooHighException();
 	return (0);
 }
-
-

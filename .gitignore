@@ -1,9 +1,15 @@
 .vscode
 *.o
 *.pdf
+*.ly
+sdbox/
 phonebook
 megaphone
 C00/
 C01/
-C02/ex00
+C02/
+C03/
+C04/
+C05/
+
 

@@ -6,16 +6,18 @@
 typedef std::string string;
 typedef std::ostream ostream;
 
-class GradeTooHighException: public std::exception {
-	public:
-		const char	*what() const throw();
-};
 
-class GradeTooLowException: public std::exception {
-	public:
-		const char	*what() const throw();
-};
+// class GradeTooHighException: public std::exception {
+// 	public:
+// 		const char	*what() const throw();
+// };
+
+// class GradeTooLowException: public std::exception {
+// 	public:
+// 		const char	*what() const throw();
+// };
 class	Form;
+
 
 /* BUREAUCRAT INTERFACE */
 class Bureaucrat {
@@ -30,8 +32,8 @@ class Bureaucrat {
 		void	incrementGrade( void );
 		void	decrementGrade( void );
 		void	signForm( Form & );
-		class GradeTooHighException;
-		class GradeTooLowException;
+		GradeTooHighException HighGrade;
+		GradeTooLowException  LowGrade;
 	private:
 		const string _name;
 		int	_grade;

@@ -4,15 +4,12 @@
 /* ------------------    EXCEPTIONS    ----------------- */
 /* ----------------------------------------------------- */
 
-class Form::GradeTooHighException: public std::exception {
-	public:
-		const char	*what() const throw() { return ("The Grade is Too High to Sign the Form"); } 
-};
-
-class Form::GradeTooLowException: public std::exception {
-	public:
-		const char	*what() const throw() { return ("The Grade is Too Low to Sign The Form"); } 
-};
+const char	*GradeTooHighException::what() const throw() {
+	 return ("Too High Grade Exception");
+}
+const char	*GradeTooLowException::what() const throw() {
+	 return ("Too Low Grade Exception");
+}
 /* ----------------------------------------------------- */
 /* ------------------ CANONICAL FORM ------------------- */
 /* ----------------------------------------------------- */
@@ -72,7 +69,7 @@ void			Form::beSigned( Bureaucrat &aBureaucrat )
 	if (aBureaucrat.getGrade() <= _requiredGradeToSign )
 		_signingState = true;
 	else
-		throw GradeTooLowException();
+		throw LowGrade;
 }
 
 

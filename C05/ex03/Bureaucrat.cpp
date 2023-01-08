@@ -4,15 +4,15 @@
 /* ------------------    EXCEPTIONS    ----------------- */
 /* ----------------------------------------------------- */
 
-class Bureaucrat::GradeTooHighException: public std::exception {
-	public:
-		const char	*what() const throw() { return ("Too High Grade Exception");}
-};
+// class Bureaucrat::GradeTooHighException: public std::exception {
+// 	public:
+// 		const char	*what() const throw() { return ("Too High Grade Exception");}
+// };
 
-class Bureaucrat::GradeTooLowException: public std::exception {
-	public:
-		const char	*what() const throw() { return ("Too Low Grade Exception");}
-};
+// class Bureaucrat::GradeTooLowException: public std::exception {
+// 	public:
+// 		const char	*what() const throw() { return ("Too Low Grade Exception");}
+// };
 
 /* ----------------------------------------------------- */
 /* ------------------ CANONICAL FORM ------------------- */
@@ -22,9 +22,9 @@ Bureaucrat::Bureaucrat ( int grade, string name ): _name(name)
 {
 	std::cout << "---           Bureaucrat Constructor called" << std::endl;
 	if (grade < 1)
-		throw GradeTooHighException();
+		throw HighGrade;
 	else if (grade > 150)
-		throw GradeTooLowException();
+		throw LowGrade;
 	_grade = grade;
 }
 
@@ -58,7 +58,7 @@ void			Bureaucrat::incrementGrade ( void )
 {
 	_grade--;
 	if (_grade < 1) 
-		throw GradeTooHighException();
+		throw HighGrade;
 	std::cout << "Incrementing " << _name << " grade to " << _grade << std::endl;
 }
 
@@ -66,7 +66,7 @@ void			Bureaucrat::decrementGrade ( void )
 {
 	_grade++;
 	if (_grade > 150) 
-		throw GradeTooLowException();
+		throw LowGrade;
 	std::cout << "Decrementing " << _name << " grade to " << _grade << std::endl;
 }
 

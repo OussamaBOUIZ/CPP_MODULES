@@ -1,17 +1,6 @@
 # include "Bureaucrat.hpp"
 
 /* ----------------------------------------------------- */
-/* ------------------    EXCEPTIONS    ----------------- */
-/* ----------------------------------------------------- */
-
-const char	*GradeTooHighException::what() const throw() {
-	 return ("Too High Grade Exception");
-}
-const char	*GradeTooLowException::what() const throw() {
-	 return ("Too Low Grade Exception");
-}
-
-/* ----------------------------------------------------- */
 /* ------------------ CANONICAL FORM ------------------- */
 /* ----------------------------------------------------- */
 
@@ -19,9 +8,9 @@ Bureaucrat::Bureaucrat ( int grade, string name ): _name(name)
 {
 	std::cout << "---           Bureaucrat Constructor called" << std::endl;
 	if (grade < 1)
-		throw GradeTooHighException();
+		throw HighGrade;
 	else if (grade > 150)
-		throw GradeTooLowException();
+		throw LowGrade;
 	_grade = grade;
 }
 
@@ -35,6 +24,8 @@ Bureaucrat::~Bureaucrat ( void ) {
 
 Bureaucrat	&Bureaucrat::operator= ( const Bureaucrat &obj )
 {
+	if (this == &obj)
+		return (*this);
 	_grade = obj._grade;
 	return (*this);
 }
@@ -55,7 +46,7 @@ void			Bureaucrat::incrementGrade ( void )
 {
 	_grade--;
 	if (_grade < 1) 
-		throw GradeTooHighException();
+		throw HighGrade;
 	std::cout << "Incrementing " << _name << " grade to " << _grade << std::endl;
 }
 
@@ -63,7 +54,7 @@ void			Bureaucrat::decrementGrade ( void )
 {
 	_grade++;
 	if (_grade > 150) 
-		throw GradeTooLowException();
+		throw LowGrade;
 	std::cout << "Decrementing " << _name << " grade to " << _grade << std::endl;
 }
 

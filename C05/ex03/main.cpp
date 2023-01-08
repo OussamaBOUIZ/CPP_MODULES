@@ -12,6 +12,8 @@ int	main( void )
 	Form *formByIntern = newIntern.makeForm("Shrubb eryCreationForm", "Blender");
 	if (formByIntern != nullptr)
 		std::cout << *formByIntern << std::endl;
-	system("leaks internship");
+	Form *anotherFormByIntern = newIntern.makeForm("ShrubberyCreationForm", "Blender");
+	if (anotherFormByIntern != nullptr)
+		std::cout << *anotherFormByIntern << std::endl;
 	return 0;
 }
