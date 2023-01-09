@@ -7,4 +7,10 @@ class Base {
 		virtual ~Base ( void );
 };
 
+class Derived: public Base {
+	public:
+		Derived ( void );
+		virtual ~Derived ( void );
+};
+
 #endif

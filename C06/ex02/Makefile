@@ -1,8 +1,8 @@
-NAME=serial
+NAME=identify
 CC=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98
 RM=rm -rf
-SOURCES = main.cpp serialization.cpp Data.cpp
+SOURCES = main.cpp casting.cpp A.cpp B.cpp C.cpp Base.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 all : $(NAME)
