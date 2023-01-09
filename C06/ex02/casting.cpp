@@ -39,11 +39,25 @@ void	identify (Base *p)
 
 void	identify (Base &p) {
 	try {
-			
+		A &refA = dynamic_cast<A&>(p);
+		(void)refA;
+		std::cout << "A" << std::endl;
+		return ;
+	} catch ( const std::exception& excep){}
+	try {
+		
+		B &refB = dynamic_cast<B&>(p);
+		(void)refB;
+		std::cout << "B" << std::endl;
+		return ;
+	} catch ( const std::exception& excep) {}
+	try {
+		C &refC = dynamic_cast<C&>(p);
+		(void)refC;
+		std::cout << "C" << std::endl;	
+		return;
 	}
-	catch ( const std::exception& excep)
-	{
-		std::cerr << excep.what() << std::endl;
+	catch ( const std::bad_cast& excep) {
+		std::cerr << "Failed To Cast : "  << excep.what() << std::endl;
 	}
-	(void)p;
 }
