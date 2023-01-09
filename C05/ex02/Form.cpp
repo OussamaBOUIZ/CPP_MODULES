@@ -79,9 +79,9 @@ void			Form::beSigned( Bureaucrat &aBureaucrat )
 
 ostream	&operator<< ( ostream &out, const Form &obj )
 {
-	std::cout << "Form name : " << obj.getName() << std::endl;
-	std::cout << "Form Signing State : " << (obj.getSigningState() ? "SIGNED" : "UNSIGNED") << std::endl;
-	std::cout << "Form Required Grade To Sign : " << obj.getRequiredGradeToSign() << std::endl;
-	std::cout << "Form Required Grade To Execute : " << obj.getRequiredGradeToExecute();
+	out << "Form name : " << obj.getName() << std::endl;
+	out << "Form Signing State : " << (obj.getSigningState() ? "SIGNED" : "UNSIGNED") << std::endl;
+	out << "Form Required Grade To Sign : " << obj.getRequiredGradeToSign() << std::endl;
+	out << "Form Required Grade To Execute : " << obj.getRequiredGradeToExecute();
 	return (out);
 }
