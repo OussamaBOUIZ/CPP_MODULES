@@ -1,22 +1,91 @@
 #include <iostream>
-# include "whatever.hpp"
-int main ( void )
+# include "iter.hpp"
+typedef std::string string;
+
+void	printInt( int );
+void	printFloat( float );
+void	printChar( char );
+void	printString( string );
+
+// Basic Printing
+int mainOne ( void )
 {
-	int a = 3;
-	int b = 2;
+	// Testing with an array of integers;
+	int intArray[3] = {4, 5, 6};
+	iter(intArray, 3, printInt);
 
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+	std::cout << "\t\t---------------------\n" << std::endl;
+	// Testing with an array of floats;
+	float flaotArray[3] = {4.45f, 5.3f, 6.21f};
+	iter(flaotArray, 3, printFloat);
 
-	std::string c = "chaine1";
-	std::string d = "chaine2";
+	std::cout << "\t\t---------------------\n" << std::endl;
+	// Testing with an array of char;
+	char charArray[3] = {'A', 'B', 'C'};
+	iter(charArray, 3, printChar);
 
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min(c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max(c, d ) << std::endl;
+	std::cout << "\t\t---------------------\n" << std::endl;
+	// Testing with an array of strings;
+	string stringsArray[3] = {"apple", "kiwi", "pineapple"};
+	iter(stringsArray, 3, printString);
 
 	return (0);
+}
+
+void	doubleInt ( int & );
+void	doubleFloat ( float & );
+
+//Writing on arrays
+int mainTwo ( void )
+{
+	// Testing with an array of integers;
+	int intArray[3] = {4, 5, 6};
+	iter(intArray, 3, doubleInt);
+	iter(intArray, 3, printInt);
+
+	std::cout << "\t\t---------------------\n" << std::endl;
+	// Testing with an array of floats
+	float floatArray[3] = {2.42f, 3.14f, 8.21f};
+	iter(floatArray, 3, doubleFloat);
+	iter(floatArray, 3, printFloat);
+	return (0);
+}
+
+// MAIN MAIN
+int main ( void )
+{
+	return mainTwo();
+}
+
+/* ----------------------------------------------------- */
+/* ------------------ FUNCTIONS IMPLEM ----------------- */
+/* ----------------------------------------------------- */
+void	printInt(int i)
+{
+	std::cout << "value : " << i << std::endl;
+}
+
+void	printFloat(float f)
+{
+	std::cout << "value : " << f << std::endl;
+}
+
+void	printChar(char c)
+{
+	std::cout << "value : " << c << std::endl;
+}
+
+void	printString(string s)
+{
+	std::cout << "value : " << s << std::endl;
+}
+
+void	doubleInt ( int & element )
+{
+	element *= 2;
+}
+
+void	doubleFloat ( float & element )
+{
+	element *= 2;
 }
