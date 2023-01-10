@@ -1,5 +1,7 @@
+#ifndef __WHATEVER_H__
+# define __WHATEVER_H__
+
 template <typename T> 
-// template <typename T1> 
 
 void	swap( T &a, T &b )
 {
@@ -21,3 +23,5 @@ T	max( T a, T b )
 {
 	return (a > b ? a : b);
 }
+
+#endif

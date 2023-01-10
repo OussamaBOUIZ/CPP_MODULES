@@ -1,3 +1,6 @@
+#ifndef __ARRAY_H__
+# define __ARRAY_H__
+
 # include <exception>
 class OutOfBounds: public std::exception {
 	public:
@@ -50,3 +53,4 @@ class Array {
 };
 
 
+#endif

@@ -1,7 +1,11 @@
-template <typename T, typename F>
+#ifndef __ITER_H__
+# define __ITER_H__
 
-void iter (T arr, size_t arraySize, F func)
+template <typename T>
+
+void iter (T *arr, int arraySize, void(*func)(T  &))
 {
-	for (size_t i = 0; i < arraySize; i++)
+	for (int i = 0; i < arraySize; i++)
 		func(arr[i]);
 }
+#endif

@@ -1,9 +1,10 @@
 #include <iostream>
 # include "whatever.hpp"
+
 int main ( void )
 {
-	int a = 3;
-	int b = 2;
+	int a = 2;
+	int b = 3;
 
 	::swap( a, b );
 	std::cout << "a = " << a << ", b = " << b << std::endl;
@@ -20,3 +21,4 @@ int main ( void )
 
 	return (0);
 }
+

@@ -9,7 +9,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJECTS)
 	$(CC) $(CPPFLAGS) $(OBJECTS)  -o $(NAME)
-	# $(CC) $(CPPFLAGS) $(OBJECTS) -fsanitize=address -o $(NAME)
 
 clean:
 	$(RM) $(OBJECTS)

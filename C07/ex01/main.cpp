@@ -2,10 +2,10 @@
 # include "iter.hpp"
 typedef std::string string;
 
-void	printInt( int );
-void	printFloat( float );
-void	printChar( char );
-void	printString( string );
+void	printInt( int & );
+void	printFloat( float & );
+void	printChar( char & );
+void	printString( string & );
 
 // Basic Printing
 int mainOne ( void )
@@ -54,28 +54,28 @@ int mainTwo ( void )
 // MAIN MAIN
 int main ( void )
 {
-	return mainTwo();
+	return mainOne();
 }
 
 /* ----------------------------------------------------- */
 /* ------------------ FUNCTIONS IMPLEM ----------------- */
 /* ----------------------------------------------------- */
-void	printInt(int i)
+void	printInt(int &i)
 {
 	std::cout << "value : " << i << std::endl;
 }
 
-void	printFloat(float f)
+void	printFloat(float &f)
 {
 	std::cout << "value : " << f << std::endl;
 }
 
-void	printChar(char c)
+void	printChar(char &c)
 {
 	std::cout << "value : " << c << std::endl;
 }
 
-void	printString(string s)
+void	printString(string &s)
 {
 	std::cout << "value : " << s << std::endl;
 }
