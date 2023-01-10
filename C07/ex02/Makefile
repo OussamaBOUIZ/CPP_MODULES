@@ -1,4 +1,4 @@
-NAME=scalar
+NAME=array
 CC=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98
 RM=rm -rf
@@ -8,7 +8,8 @@ OBJECTS=$(SOURCES:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJECTS)
-	$(CC) $(CPPFLAGS) $(OBJECTS) -o $(NAME)
+	$(CC) $(CPPFLAGS) $(OBJECTS)  -o $(NAME)
+	# $(CC) $(CPPFLAGS) $(OBJECTS) -fsanitize=address -o $(NAME)
 
 clean:
 	$(RM) $(OBJECTS)
