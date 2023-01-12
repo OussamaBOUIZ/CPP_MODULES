@@ -33,14 +33,23 @@
 
 int main ()
 {
-	Span sp = Span(5);
+	Span sp = Span(100);
 
+
+	std::vector<unsigned int> listOfNumbers;
+
+	listOfNumbers.push_back(125);
+	listOfNumbers.push_back(15);
+	listOfNumbers.push_back(15);
+	listOfNumbers.push_back(25);
+	listOfNumbers.push_back(251);
 	sp.addNumber(6);
 	sp.addNumber(3);
 	sp.addNumber(17);
 	sp.addNumber(9);
 	sp.addNumber(11);
-
+	sp.addListOfNumbers(listOfNumbers);
+	sp.display();
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
 	return (0);
