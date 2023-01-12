@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <stack>
 #include "easyfind.hpp"
 #include "easyfind.tpp"
 
+//TESTING WITH A VECTOR
 int mainOne ( void )
 {
 	try {
@@ -12,8 +14,10 @@ int mainOne ( void )
 			numbers.push_back(i * i);
 		for (size_t i = 0; i < 10; i++)
 			std::cout << numbers[i] << std::endl;
-		int	a = easyfind(numbers, 100);
-		std::cout << a << std::endl;	
+		int	value = easyfind(numbers, 16);
+		std::cout << "value : " << value << std::endl;
+		value = easyfind(numbers, 100);
+		std::cout << "value : " << value << std::endl;
 	}
 	catch ( const std::exception& excep)
 	{
@@ -22,24 +26,25 @@ int mainOne ( void )
 	return (0);
 }
 
+//TESTING WITH A DEQUE
 int mainTwo ( void )
 {
 	try {
-		std::deque<int> conversation;
+		std::deque<int> numbers;
 		std::deque<int>::iterator it;
 
 		for (size_t i = 0; i < 5; i++)
-			conversation.push_back(i * i);
+			numbers.push_back(i * i);
 		for (size_t i = 0; i < 5; i++)
-			conversation.push_front(i + i);
-		for (it = conversation.begin();
-			 it != conversation.end() ;
+			numbers.push_front(i + i);
+		for (it = numbers.begin();
+			 it != numbers.end() ;
 			 ++it)
 			 	std::cout << *it << std::endl;
-		int	sentence = easyfind(conversation, 16);
-		std::cout << sentence << std::endl;
-		int	sentence = easyfind(conversation, 100);
-		std::cout << sentence << std::endl;
+		std::cout << std::endl;
+		int	value = easyfind(numbers, 16);
+		std::cout << "value : " << value << std::endl;
+		// value = easyfind(numbers, 100); // TESTING WITH UNEXISTING ELEMENT
 	}
 	catch ( const std::exception& excep) {
 		std::cerr << excep.what() << std::endl;
@@ -47,7 +52,9 @@ int mainTwo ( void )
 	return (0);
 }
 
+
 int main ( void )
 {
-	return mainTwo();
+	return mainOne();
+	// return mainTwo();
 }

@@ -40,7 +40,7 @@ unsigned int	Span::size( void ) const
 
 void	Span::addNumber ( unsigned int number )
 {
-	if (_size <= _maxSize - 1) {
+	if (_size < _maxSize ) {
 		_content.push_back(number);
 		_size++;
 	}
