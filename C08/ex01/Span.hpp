@@ -12,10 +12,11 @@ class Span {
 		Span ( const Span & );
 		Span	&operator= ( const Span & );
 		void	addNumber ( unsigned int );
-		void	addListOfNumbers ( unsigned int *, unsigned int );
+		void	addListOfNumbers ( std::vector<unsigned int> );
 		unsigned int	shortestSpan ( void ) const;
 		unsigned int	longestSpan ( void ) const;
 		unsigned int	size( void ) const;
+		void			display ( void );
 	private:
 		std::vector<unsigned int>	_content;
 		unsigned int	_size;
@@ -23,3 +24,4 @@ class Span {
 };
 
 #endif
+

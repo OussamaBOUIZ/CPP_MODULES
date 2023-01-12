@@ -1,4 +1,4 @@
-NAME=easy
+NAME=span
 CC=c++
 CPPFLAGS=-Wall -Wextra -Werror -std=c++98
 RM=rm -rf

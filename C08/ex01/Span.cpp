@@ -7,9 +7,12 @@
 Span::Span ( unsigned int N )
 {
 	_maxSize = N;
+	_size = 0;
 }
 
-Span::Span ( void ) { }
+Span::Span ( void ) { 
+	_size = 0;
+}
 
 Span::~Span ( void ) { }
 
@@ -41,30 +44,48 @@ void	Span::addNumber ( unsigned int number )
 		_content.push_back(number);
 		_size++;
 	}
-	else 
-		throw std::out_of_range("Span Full");
+	else
+	{
+		throw std::out_of_range("The Container is Full");
+	} 
 }
 
+void	Span::addListOfNumbers ( std::vector<unsigned int> numbers )
+{
+	std::vector<unsigned int>::iterator it;
 
+	for (it = numbers.begin(); it != numbers.end(); ++it)
+		addNumber(*it);
+}
 
-// unsigned int	Span::shortestSpan ( void ) const
-// {
-// 	unsigned int shortestSpanValue = UINT_MAX;
+unsigned int	Span::shortestSpan ( void ) const
+{
+	unsigned int shortestSpanValue = UINT_MAX;
+	unsigned int currentSpan;
+	std::vector<unsigned int> tempVector;
 
-// 	for (unsigned int i = 0; i < _size ; i++)
-// 	{
-		
-// 	}
-// 	return (shortestSpanValue);
-// }
-// unsigned int	Span::longestSpan ( void ) const
-// {
-// 	unsigned int longestSpanValue = UINT_MAX;
+	tempVector = this->_content;
+	std::sort(tempVector.begin(), tempVector.end());
+	for (unsigned int i = 1; i < tempVector.size(); i++)
+	{
+		currentSpan = tempVector[i] - tempVector[i - 1];
+		if (currentSpan < shortestSpanValue)
+			shortestSpanValue = currentSpan;
+	}
+	return (shortestSpanValue);
+}
 
-// 	for (unsigned int i = 0; i < _size ; i++)
-// 	{
+void	Span::display ( void )
+{
+	std::vector<unsigned int>::iterator it = this->_content.begin();
 
-// 	}
-// 	return (longestSpanValue);
+	for (; it != _content.end(); it++)
+		  std::cout << *it << std::endl;
+}
 
-// }
+unsigned int	Span::longestSpan ( void ) const
+{
+	unsigned int maxVectorElement  = *(std::max_element(_content.begin(), _content.end()));
+	unsigned int minVectorElement  = *(std::min_element(_content.begin(), _content.end()));
+	return (maxVectorElement - minVectorElement);
+}
