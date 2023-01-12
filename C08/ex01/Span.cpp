@@ -60,11 +60,11 @@ void	Span::addListOfNumbers ( std::vector<unsigned int> numbers )
 
 unsigned int	Span::shortestSpan ( void ) const
 {
-	unsigned int shortestSpanValue = UINT_MAX;
 	unsigned int currentSpan;
 	std::vector<unsigned int> tempVector;
 
 	tempVector = this->_content;
+	unsigned int shortestSpanValue = tempVector[1] - tempVector[0];
 	std::sort(tempVector.begin(), tempVector.end());
 	for (unsigned int i = 1; i < tempVector.size(); i++)
 	{

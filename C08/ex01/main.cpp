@@ -2,55 +2,76 @@
 #include <vector>
 #include <deque>
 #include "Span.hpp"
-
-// int main ( void )
-// {
-// 	try {
-// 		Span Numbers(10);
-
-	
-// 		Numbers.addNumber(55);
-// 		Numbers.addNumber(8);
-// 		Numbers.addNumber(1);
-// 		// Numbers.addNumber(6);
-// 		// Numbers.addNumber(7);
-// 		// Numbers.addNumber(17);
-// 		// Numbers.addNumber(18);
-// 		Numbers.display();
-// 		std::cout << "Numbers size : " << Numbers.size() << std::endl;
-
-
-
-
-// 		std::cout << Numbers.shortestSpan() << std::endl;
-// 		std::cout << Numbers.longestSpan() << std::endl;
-// 	}
-// 	catch ( const std::exception& excep) {
-// 		std::cerr << excep.what() << std::endl;
-// 	}
-// 	return (0);
-// }
-
-int main ()
+// TESTING WITH SUBJECT MAIN
+int mainSubject ( void )
 {
-	Span sp = Span(100);
+	Span	mySpan = Span(5);
 
+	mySpan.addNumber(6);
+	mySpan.addNumber(3);
+	mySpan.addNumber(17);
+	mySpan.addNumber(9);
+	mySpan.addNumber(11);
 
-	std::vector<unsigned int> listOfNumbers;
-
-	listOfNumbers.push_back(125);
-	listOfNumbers.push_back(15);
-	listOfNumbers.push_back(15);
-	listOfNumbers.push_back(25);
-	listOfNumbers.push_back(251);
-	sp.addNumber(6);
-	sp.addNumber(3);
-	sp.addNumber(17);
-	sp.addNumber(9);
-	sp.addNumber(11);
-	sp.addListOfNumbers(listOfNumbers);
-	sp.display();
-	std::cout << sp.shortestSpan() << std::endl;
-	std::cout << sp.longestSpan() << std::endl;
+	std::cout <<  mySpan.shortestSpan() << std::endl;
+	std::cout <<  mySpan.longestSpan() << std::endl;
 	return (0);
+}
+
+//TESTING WITH A BIG SIZE
+# define MAX_SIZE 100000
+int mainOne ( void )
+{
+	Span mySpan(MAX_SIZE);
+
+	for (unsigned int i = 0; i < MAX_SIZE ; i++)
+		mySpan.addNumber(rand());
+	mySpan.display();
+	std::cout << std::endl;
+	std::cout <<  mySpan.shortestSpan() << std::endl;
+	std::cout <<  mySpan.longestSpan() << std::endl;
+	return (0);
+}
+
+//EXCEEDING THE SIZE
+# define SIZE 256
+int mainTwo ( void )
+{
+	try {
+		Span	mySpan(SIZE);
+
+		for (unsigned int i = 0; i < SIZE + 1; i++)
+			mySpan.addNumber(rand());
+		std::cout <<  mySpan.shortestSpan() << std::endl;
+		std::cout <<  mySpan.longestSpan() << std::endl;
+	}
+	catch ( const std::exception& excep) {
+		std::cerr << excep.what() << std::endl;
+	}
+	return (0);
+}
+
+//ADDING BUNCH OF MEMBERS AT ONCE
+# define RANDSIZE 26
+int mainThree ( void )
+{
+	Span mySpan(SIZE);
+
+	std::vector<unsigned int> manyNumbers;
+	for (unsigned int i = 0; i < RANDSIZE ; i++)
+		manyNumbers.push_back(rand());
+	mySpan.addListOfNumbers(manyNumbers);
+	mySpan.display();
+	std::cout << std::endl;
+	std::cout <<  mySpan.shortestSpan() << std::endl;
+	std::cout <<  mySpan.longestSpan() << std::endl;
+	return (0);
+}
+
+int main ( void )
+{
+	return mainSubject();
+	// return mainOne();
+	// return mainTwo(); // Container is Full
+	// return mainThree();
 }
