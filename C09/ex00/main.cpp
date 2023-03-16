@@ -1,12 +1,13 @@
 # include "BitcoinExchange.hpp"
 # include <iostream>
-# define DEFAULT_DATABASE_FILE "./data.csv"
 
 int	main(int ac, char **av)
 {
 
-	const char	*dataBaseFile;
-
-	dataBaseFile = (ac == 2) ? (char *)av[1] : DEFAULT_DATABASE_FILE;
+	if (ac != 2)
+	{
+		std::cerr << "Error: could not open file." << std::endl;
+		return (1);
+	}
 	return (0);
 }
