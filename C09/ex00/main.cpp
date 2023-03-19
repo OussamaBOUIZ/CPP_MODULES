@@ -9,5 +9,8 @@ int	main(int ac, char **av)
 		std::cerr << "Error: could not open file." << std::endl;
 		return (1);
 	}
+	BitcoinExchange	ExchangeCalculator(av[1]);
+	// ExchangeCalculator.displayDataBase();
+	ExchangeCalculator.displayBitcoinExchange();
 	return (0);
 }

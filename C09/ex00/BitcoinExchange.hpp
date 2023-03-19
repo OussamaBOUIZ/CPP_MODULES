@@ -9,16 +9,21 @@ typedef std::string string;
 
 class BitcoinExchange {
 	public:
-		BitcoinExchange ( string );
+		BitcoinExchange ( char * );
 		~BitcoinExchange ( void );
 		BitcoinExchange ( const BitcoinExchange & );
 		BitcoinExchange	&operator= ( const BitcoinExchange & );
 		void	displayResults ( void );
+		void	displayDataBase ( void );
+		void	displayBitcoinExchange ( void );
 	private:
-		void								_errorMessage ( string );
-		void								_parseDataBaseFile ( void );
-		std::map<string, string>	_dataBase;
-		std::ifstream						_inputFile;
+		void						_errorMessage ( string );
+		void						_parseDataBaseFile ( void );
+		void						_handleCurrentLine ( string & );
+		bool						_checkDateValidity ( string & );
+		bool						_checkValueValidity ( string & );
+		std::map<string, double>	_dataBase;
+		std::ifstream				_inputFile;
 };
 
 /*
