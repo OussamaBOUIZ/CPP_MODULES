@@ -5,18 +5,20 @@
 # include <fstream>
 # include <map>
 
+typedef std::string string;
+
 class BitcoinExchange {
 	public:
-		BitcoinExchange ( void );
+		BitcoinExchange ( string );
 		~BitcoinExchange ( void );
 		BitcoinExchange ( const BitcoinExchange & );
 		BitcoinExchange	&operator= ( const BitcoinExchange & );
 		void	displayResults ( void );
 	private:
-		void							_errorMessage ( std::string );
-		void							_parseDataBaseFile ( void );
-		std::map<std::string, std::string>	_dataBase;
-		std::ifstream					_inputFile;
+		void								_errorMessage ( string );
+		void								_parseDataBaseFile ( void );
+		std::map<string, string>	_dataBase;
+		std::ifstream						_inputFile;
 };
 
 /*
