@@ -67,6 +67,120 @@ void	BitcoinExchange::_parseDataBaseFile ( void )
 	std::cout << "PARSING DONE!!!" << std::endl;
 }
 
+bool	BitcoinExchange::_checkForDigitsOnly ( string &str )
+{
+	size_t	i;
+
+	i = 0;
+	while (i < str.size())
+	{
+		if (isdigit(str[i]) == 0)
+			return (false);
+	}
+	return (true);
+}
+
+bool BitcoinExchange::_checkYearStringValidity ( string &yearString )
+{ 
+	try {
+		int	yearAsNum = std::stoi(yearString);			
+		if (yearAsNum < 2009 or yearAsNum > 2022)
+			return (false);
+	}
+	catch ( ... ) {
+		return (false);
+	}
+	return (true);
+}
+bool BitcoinExchange::_checkMonthStringValidity ( string &monthString )
+{
+	try {
+		int	monthAsNum = std::stoi(monthString);			
+		if (monthAsNum < 1 or monthAsNum > 12)
+			return (false);
+	}
+	catch ( ... ) {
+		return (false);
+	}
+	return (true);	
+}
+bool BitcoinExchange::_checkDayStringValidity ( string &dayString )
+{
+	try {
+		int	dayAsNum = std::stoi(dayString);			
+		if (dayAsNum < 1 or dayAsNum > 31)
+			return (false);
+	}
+	catch ( ... ) {
+		return (false);
+	}
+	return (true);
+}
+// bool	BitcoinExchange::_checkDateValidity ( string &dateString )
+// {
+// 	string	yearString, monthString, dayString;
+// 	size_t	dashIndex, prevDashIndex;
+
+// 	dashIndex = dateString.find('-');
+// 	yearString = dateString.substr(0, dashIndex);
+// 	std::cout << "yearString : " << yearString << std::endl;
+// 	if (this->_checkYearStringValidity(yearString) == false)
+// 		return (false);
+// 	prevDashIndex = dashIndex;
+// 	dashIndex = dateString.find('-', prevDashIndex);
+// 	monthString = dateString.substr(prevDashIndex + 1, dashIndex - 2);
+// 	std::cout << "monthString : " << monthString << std::endl;
+// 	if (this->_checkMonthStringValidity(monthString) == false)
+// 		return (false);
+// 	dayString = dateString.substr(dashIndex);
+// 	std::cout << "dayString : " << dayString << std::endl;
+// 	if (this->_checkDayStringValidity(dayString) == false)
+// 		return (false);
+// 	return (true);
+// }
+
+bool	BitcoinExchange::_checkDateValidity ( string &dateString )
+{
+	string	yearString, monthString, dayString;
+	size_t	firstDashIndex, secondDashIndex;
+
+	firstDashIndex = dateString.find('-');
+	yearString = dateString.substr(0, firstDashIndex);
+	if (this->_checkYearStringValidity(yearString) == false)
+		return (false);
+	secondDashIndex = dateString.find('-', firstDashIndex + 1);
+	monthString = dateString.substr(firstDashIndex + 1, 2);
+	if (this->_checkMonthStringValidity(monthString) == false)
+		return (false);
+	dayString = dateString.substr(secondDashIndex + 1);
+	if (this->_checkDayStringValidity(dayString) == false)
+		return (false);
+	return (true);
+}
+
+bool	BitcoinExchange::_checkValueValidity ( string &valueString )
+{
+	double	value;
+
+	try {
+		value = std::stod(valueString);
+	}
+	catch ( const std::invalid_argument& excep) {
+		this->_errorMessage("Not a number");
+		return (false);
+	}
+	if (value < 0)
+	{
+		this->_errorMessage("Not a positive number");
+		return (false);
+	} else if (value > 1000)
+	{
+		this->_errorMessage("Large number");
+		return (false);
+	}
+	return (true);
+}
+
 void	BitcoinExchange::_handleCurrentLine ( string &line )
 {
 	string	dateString;
@@ -76,7 +190,7 @@ void	BitcoinExchange::_handleCurrentLine ( string &line )
 	sepIndex = line.find('|');
 	if (sepIndex == std::string::npos)
 	{
-		this->_errorMessage("bad input => " + line);
+		this->_errorMessage("Bad input => " + line);
 		return ;
 	}
 	dateString = line.substr(0, sepIndex);
@@ -88,29 +202,10 @@ void	BitcoinExchange::_handleCurrentLine ( string &line )
 	valueString = line.substr(sepIndex + 1);
 	if (this->_checkValueValidity(valueString) == false)
 		return ;
+	std::cout << (this->_dataBase.lower_bound(dateString)->first) << std::endl;
+	std::cout << (this->_dataBase.lower_bound(dateString)->second) << std::endl;
+	std::cout << "\n";
 }
-
-bool	BitcoinExchange::_checkDateValidity ( string &dateString )
-{
-	string	yearString, monthString, dayString;
-	size_t	dashIndex, prevDashIndex;
-
-	dashIndex = dateString.find('-');
-	yearString = dateString.substr(0, dashIndex);
-	if (this->_checkYearStringValidity(yearString) == false)
-		return (false);
-	prevDashIndex = dashIndex;
-	dashIndex = dateString.find(prevDashIndex + 1, '-'); // * NOT SURE IF THIS IS TRUE
-	monthString = dateString.substr(prevDashIndex, dashIndex);
-	if (this->_checkMonthStringValidity(monthString) == false)
-		return (false);
-	dayString = dateString.substr(dashIndex);
-	if (this->_checkDayStringValidity(dayString) == false)
-		return (false);
-	return (true);
-}
-
-
 
 void	BitcoinExchange::displayDataBase ( void )
 {
@@ -123,10 +218,6 @@ void	BitcoinExchange::displayDataBase ( void )
 		it++;
 	}
 }
-
-bool BitcoinExchange::_checkYearStringValidity ( string &s ){ (void)s;return (false);}
-bool BitcoinExchange::_checkMonthStringValidity ( string &s ){ (void)s;return (false);}
-bool BitcoinExchange::_checkDayStringValidity ( string &s ){ (void)s;return (false);}
 
 void	BitcoinExchange::displayBitcoinExchange ( void )
 {
