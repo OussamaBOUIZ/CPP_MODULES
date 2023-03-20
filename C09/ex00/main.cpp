@@ -10,7 +10,6 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	BitcoinExchange	ExchangeCalculator(av[1]);
-	// ExchangeCalculator.displayDataBase();
 	ExchangeCalculator.displayBitcoinExchange();
 	return (0);
 }

@@ -4,6 +4,8 @@
 # include <iostream>
 # include <fstream>
 # include <map>
+# include <string>
+# include <stdlib.h>
 
 typedef std::string string;
 
@@ -22,6 +24,11 @@ class BitcoinExchange {
 		void						_handleCurrentLine ( string & );
 		bool						_checkDateValidity ( string & );
 		bool						_checkValueValidity ( string & );
+		bool						_checkYearStringValidity ( string & );
+		bool						_checkMonthStringValidity ( string & );
+		bool						_checkDayStringValidity ( string & );
+		bool						_checkForDigitsOnly ( string & );
+		bool						_checkForProperDateFormat ( string &);
 		std::map<string, double>	_dataBase;
 		std::ifstream				_inputFile;
 };
