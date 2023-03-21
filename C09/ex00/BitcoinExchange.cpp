@@ -62,22 +62,8 @@ void	BitcoinExchange::_parseDataBaseFile ( void )
 			exit (0); // D BETTER THROW EXCEPTION
 		dateString = line.substr(0, sepIndex);
 		exchangeRateString = line.substr(sepIndex + 1);
-		this->_dataBase[dateString] = std::stoi(exchangeRateString);
+		this->_dataBase[dateString] = std::stod(exchangeRateString, nullptr);
 	}
-	std::cout << "PARSING DONE!!!" << std::endl;
-}
-
-bool	BitcoinExchange::_checkForDigitsOnly ( string &str )
-{
-	size_t	i;
-
-	i = 0;
-	while (i < str.size())
-	{
-		if (isdigit(str[i]) == 0)
-			return (false);
-	}
-	return (true);
 }
 
 bool BitcoinExchange::_checkYearStringValidity ( string &yearString )
@@ -116,28 +102,6 @@ bool BitcoinExchange::_checkDayStringValidity ( string &dayString )
 	}
 	return (true);
 }
-// bool	BitcoinExchange::_checkDateValidity ( string &dateString )
-// {
-// 	string	yearString, monthString, dayString;
-// 	size_t	dashIndex, prevDashIndex;
-
-// 	dashIndex = dateString.find('-');
-// 	yearString = dateString.substr(0, dashIndex);
-// 	std::cout << "yearString : " << yearString << std::endl;
-// 	if (this->_checkYearStringValidity(yearString) == false)
-// 		return (false);
-// 	prevDashIndex = dashIndex;
-// 	dashIndex = dateString.find('-', prevDashIndex);
-// 	monthString = dateString.substr(prevDashIndex + 1, dashIndex - 2);
-// 	std::cout << "monthString : " << monthString << std::endl;
-// 	if (this->_checkMonthStringValidity(monthString) == false)
-// 		return (false);
-// 	dayString = dateString.substr(dashIndex);
-// 	std::cout << "dayString : " << dayString << std::endl;
-// 	if (this->_checkDayStringValidity(dayString) == false)
-// 		return (false);
-// 	return (true);
-// }
 
 bool	BitcoinExchange::_checkDateValidity ( string &dateString )
 {
@@ -161,9 +125,10 @@ bool	BitcoinExchange::_checkDateValidity ( string &dateString )
 bool	BitcoinExchange::_checkValueValidity ( string &valueString )
 {
 	double	value;
-
+	// std::string::size_type sz; 
+	
 	try {
-		value = std::stod(valueString);
+		value = std::stod(valueString, nullptr);
 	}
 	catch ( const std::invalid_argument& excep) {
 		this->_errorMessage("Not a number");
@@ -186,6 +151,7 @@ void	BitcoinExchange::_handleCurrentLine ( string &line )
 	string	dateString;
 	string	valueString;
 	size_t	sepIndex;
+	double	result = 0.0;
 
 	sepIndex = line.find('|');
 	if (sepIndex == std::string::npos)
@@ -202,9 +168,12 @@ void	BitcoinExchange::_handleCurrentLine ( string &line )
 	valueString = line.substr(sepIndex + 1);
 	if (this->_checkValueValidity(valueString) == false)
 		return ;
-	std::cout << (this->_dataBase.lower_bound(dateString)->first) << std::endl;
-	std::cout << (this->_dataBase.lower_bound(dateString)->second) << std::endl;
-	std::cout << "\n";
+	std::map<string, double>::iterator	lowBoundIt;
+
+	lowBoundIt = this->_dataBase.lower_bound(dateString);
+	lowBoundIt--;
+	result = lowBoundIt->second * std::stod(valueString, nullptr);
+	std::cout << dateString + " => " + valueString + " = " << result << std::endl;
 }
 
 void	BitcoinExchange::displayDataBase ( void )

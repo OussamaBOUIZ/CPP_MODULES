@@ -11,5 +11,6 @@ int	main(int ac, char **av)
 	}
 	BitcoinExchange	ExchangeCalculator(av[1]);
 	ExchangeCalculator.displayBitcoinExchange();
+
 	return (0);
 }
