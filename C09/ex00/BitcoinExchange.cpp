@@ -170,7 +170,7 @@ void	BitcoinExchange::_handleCurrentLine ( string &line )
 		return ;
 	std::map<string, double>::iterator	lowBoundIt;
 
-	lowBoundIt = this->_dataBase.lower_bound(dateString);
+	lowBoundIt = this->_dataBase.upper_bound(dateString);
 	lowBoundIt--;
 	result = lowBoundIt->second * std::stod(valueString, nullptr);
 	std::cout << dateString + " => " + valueString + " = " << result << std::endl;
