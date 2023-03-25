@@ -72,20 +72,18 @@ void	PmergeMe::_sortThePairsInVector (std::vector<std::pair<int, int> > &vec )
 		if (vec[i].first > vec[i].second)
 			std::swap(vec[i].first, vec[i].second);
 }
-/*
-	i ← 1
-	while i < length(A)
-		j ← i
-		while j > 0 and A[j-1] > A[j]
-			swap A[j] and A[j-1]
-			j ← j - 1
-		end while
-    i ← i + 1
-	end while
-*/
+
+void	PmergeMe::_sortThePairsInDeque (std::deque<std::pair<int, int> > &deq )
+{
+	for (size_t i = 0; i < deq.size(); i++)
+		if (deq[i].first > deq[i].second)
+			std::swap(deq[i].first, deq[i].second);
+}
+
 bool sortBySecond(const std::pair<int, int>& left, const std::pair<int, int>& right) {
     return left.second < right.second;
 }
+
 void	PmergeMe::_sortVector ( void )
 {
 	bool	even;
@@ -93,13 +91,16 @@ void	PmergeMe::_sortVector ( void )
 	std::vector<std::pair<int, int> >	vectorOfPairs;
 	std::vector<int>					pend;
 	std::vector<int>					Sequence;
+	time_t	currTime;
 
+	time(&currTime);
+	std::cout << currTime << std::endl;
+	exit(0);
 	even = this->_vectorOfNums.size() % 2 ? false : true;
 	if (even == false)
 	{
 		straggler = this->_vectorOfNums[this->_vectorOfNums.size() - 1];
 		this->_vectorOfNums.pop_back();
-		std::cout << "straggler : " << straggler << std::endl;
 	}
 	for (size_t i = 0; i < this->_vectorOfNums.size() - 1; i += 2)
 		vectorOfPairs.push_back(std::make_pair(this->_vectorOfNums[i], this->_vectorOfNums[i + 1]));
@@ -131,14 +132,40 @@ void	PmergeMe::_sortVector ( void )
 void	PmergeMe::_sortDeque ( void )
 {
 	bool	even;
+	int		straggler = 0;
+	std::deque<std::pair<int, int> >	dequeOfPairs;
+	std::deque<int>					pend;
+	std::deque<int>					Sequence;
+	
 
 	even = this->_dequeOfNums.size() % 2 ? false : true;
 	if (even == false)
 	{
-		int		straggler = this->_dequeOfNums[this->_dequeOfNums.size() - 1];
+		straggler = this->_dequeOfNums[this->_dequeOfNums.size() - 1];
 		this->_dequeOfNums.pop_back();
-		std::cout << "straggler : " << straggler << std::endl;
 	}
+	for (size_t i = 0; i < this->_dequeOfNums.size() - 2; i += 2)
+		dequeOfPairs.push_back(std::make_pair(this->_dequeOfNums[i], this->_dequeOfNums[i + 1]));
+	this->_sortThePairsInDeque(dequeOfPairs);
+	std::sort(dequeOfPairs.begin(), dequeOfPairs.end(), sortBySecond);
+	for (size_t i = 0; i < dequeOfPairs.size(); i++)
+		pend.push_back(dequeOfPairs[i].first);
+	for (size_t i = 0; i < dequeOfPairs.size(); i++)
+		Sequence.push_back(dequeOfPairs[i].second);
+	std::deque<int>::iterator	it;
+
+	for (size_t i = 0; i < pend.size(); i++)
+	{
+		it = std::upper_bound(Sequence.begin(), Sequence.end(), pend[i]);
+		Sequence.insert(it, pend[i]);
+	}
+	if (even == false)
+	{
+		it = std::upper_bound(Sequence.begin(), Sequence.end(), straggler);
+		Sequence.insert(it, straggler);
+	}
+	for (size_t i = 0; i < Sequence.size(); i++)
+		std::cout << Sequence[i] << std::endl;
 }
 
 void	PmergeMe::displayBothContainers ( void )

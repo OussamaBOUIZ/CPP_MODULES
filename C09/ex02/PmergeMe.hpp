@@ -4,6 +4,7 @@
 # include <deque>
 # include <iostream>
 # include <cstdlib>
+# include <ctime>
 
 typedef std::string string;
 class PmergeMe {
@@ -27,14 +28,9 @@ class PmergeMe {
 		void				_getDuration ( void );
 		void				_printVectorOfPairs ( std::vector<std::pair<int, int> > & );
 		void				_sortThePairsInVector ( std::vector<std::pair<int, int> > & );
+		void				_sortThePairsInDeque( std::deque<std::pair<int, int> > & );
 };
 
 void	errorMessage ( const char * );
-/*
-	Jacobsthal numbers
-	 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341
-	 , 683, 1365, 2731, 5461, 10923, 21845, 
-	 43691, 87381, 174763, 349525, …
-*/
 
 #endif
