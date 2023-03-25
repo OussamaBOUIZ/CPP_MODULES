@@ -3,6 +3,8 @@
 # include <vector>
 # include <deque>
 # include <iostream>
+# include <cstdlib>
+
 typedef std::string string;
 class PmergeMe {
 	public:
@@ -23,6 +25,8 @@ class PmergeMe {
 		void				_sortVector( void );
 		void				_sortDeque( void );
 		void				_getDuration ( void );
+		void				_printVectorOfPairs ( std::vector<std::pair<int, int> > & );
+		void				_sortThePairsInVector ( std::vector<std::pair<int, int> > & );
 };
 
 void	errorMessage ( const char * );
@@ -32,4 +36,5 @@ void	errorMessage ( const char * );
 	 , 683, 1365, 2731, 5461, 10923, 21845, 
 	 43691, 87381, 174763, 349525, …
 */
+
 #endif
