@@ -4,7 +4,9 @@
 # include <deque>
 # include <iostream>
 # include <cstdlib>
-# include <ctime>
+# include <sys/time.h>
+# include <sstream>
+# include <iomanip>
 
 typedef std::string string;
 class PmergeMe {
@@ -19,6 +21,9 @@ class PmergeMe {
 	private:
 		std::vector<int>	_vectorOfNums;
 		std::deque<int>		_dequeOfNums;
+		float				_dequeTime;
+		float				_vectorTime;
+		float				_countTimeDifference ( struct timeval, struct timeval );
 		void				_fillTheVector ( char **, int );
 		void				_fillTheDeque ( char **, int );
 		void				_displayTheVector ( void );

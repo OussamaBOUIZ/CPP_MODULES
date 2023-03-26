@@ -36,6 +36,38 @@ PmergeMe::PmergeMe ( const PmergeMe &obj )
 /* ------------------ MEMBER FUNCTIONS ----------------- */
 /* ----------------------------------------------------- */
 
+void	PmergeMe::_displayTheVector( void )
+{
+	for (std::vector<int>::iterator it = this->_vectorOfNums.begin();
+		 it != this->_vectorOfNums.end(); 
+		 it++)
+		std::cout << (*it) << " ";
+	std::cout << std::endl;
+}
+
+// void	PmergeMe::_displayTheDeque( void )
+// {
+// 	for (std::deque<int>::iterator it = this->_dequeOfNums.begin();
+// 		 it != this->_dequeOfNums.end(); 
+// 		 it++)
+// 		std::cout << (*it) + " ";
+// 	std::cout << std::endl;
+// }
+
+float	PmergeMe::_countTimeDifference ( struct timeval startTime, struct timeval endTime)
+{
+
+	std::stringstream	aStringStream;
+	string				s;
+
+	aStringStream << (endTime.tv_sec - startTime.tv_sec);
+	aStringStream << ".";
+	aStringStream << (endTime.tv_usec - startTime.tv_usec);
+	aStringStream >> s;
+	std::cout << "std::atof(s.c_str()) : " << std::atof(s.c_str()) << std::endl;
+	return (std::atof(s.c_str()));
+}
+
 void	PmergeMe::_fillTheVector ( char	**arguments, int numOfArguments )
 {
 	try {
@@ -91,11 +123,10 @@ void	PmergeMe::_sortVector ( void )
 	std::vector<std::pair<int, int> >	vectorOfPairs;
 	std::vector<int>					pend;
 	std::vector<int>					Sequence;
-	time_t	currTime;
+	struct timeval	startTime;
+	struct timeval	endTime;
 
-	time(&currTime);
-	std::cout << currTime << std::endl;
-	exit(0);
+	gettimeofday(&startTime, 0);
 	even = this->_vectorOfNums.size() % 2 ? false : true;
 	if (even == false)
 	{
@@ -104,8 +135,7 @@ void	PmergeMe::_sortVector ( void )
 	}
 	for (size_t i = 0; i < this->_vectorOfNums.size() - 1; i += 2)
 		vectorOfPairs.push_back(std::make_pair(this->_vectorOfNums[i], this->_vectorOfNums[i + 1]));
-	this->_printVectorOfPairs(vectorOfPairs);
-	std::cout << std::endl;
+	// std::cout << std::endl;
 	this->_sortThePairsInVector(vectorOfPairs);
 	std::sort(vectorOfPairs.begin(), vectorOfPairs.end(), sortBySecond);
 	for (size_t i = 0; i < vectorOfPairs.size(); i++)
@@ -124,8 +154,14 @@ void	PmergeMe::_sortVector ( void )
 		it = std::upper_bound(Sequence.begin(), Sequence.end(), straggler);
 		Sequence.insert(it, straggler);
 	}
-	for (size_t i = 0; i < Sequence.size(); i++)
-		std::cout << Sequence[i] << std::endl;
+	std::cout << "After: ";
+	for (std::vector<int>::iterator it = Sequence.begin();
+		 it != Sequence.end(); 
+		 it++)
+		std::cout << (*it) << " ";
+	std::cout << std::endl;
+	gettimeofday(&endTime, 0);
+	this->_vectorTime =  this->_countTimeDifference(startTime, endTime);
 }
 
 
@@ -137,7 +173,9 @@ void	PmergeMe::_sortDeque ( void )
 	std::deque<int>					pend;
 	std::deque<int>					Sequence;
 	
-
+	struct timeval	startTime;
+	struct timeval	endTime;
+	gettimeofday(&startTime, 0);
 	even = this->_dequeOfNums.size() % 2 ? false : true;
 	if (even == false)
 	{
@@ -164,8 +202,8 @@ void	PmergeMe::_sortDeque ( void )
 		it = std::upper_bound(Sequence.begin(), Sequence.end(), straggler);
 		Sequence.insert(it, straggler);
 	}
-	for (size_t i = 0; i < Sequence.size(); i++)
-		std::cout << Sequence[i] << std::endl;
+	gettimeofday(&endTime, 0);
+	this->_dequeTime =  this->_countTimeDifference(startTime, endTime);
 }
 
 void	PmergeMe::displayBothContainers ( void )
@@ -180,8 +218,12 @@ void	PmergeMe::displayBothContainers ( void )
 
 void	PmergeMe::sortBothContainers ( void )
 {
+	std::cout << "Before: ";
+	this->_displayTheVector();
 	this->_sortVector();
-	// this->_sortDeque();
+	this->_sortDeque();
+	std::cout << "Time to process a range of " << this->_vectorOfNums.size() << " elements with std::vector :  " <<std::fixed << std::setprecision(5) <<  this->_vectorTime<< " us" << std::endl;
+	std::cout << "Time to process a range of " << this->_dequeOfNums.size() << " elements with std::deque :  " << std::fixed << std::setprecision(5) << this->_dequeTime<< " us" << std::endl;
 }
 
 /* ----------------------------------------------------- */

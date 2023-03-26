@@ -6,8 +6,6 @@ int	main ( int ac, char **av )
 		errorMessage("");
 	PmergeMe	MergeInsertSorter(av + 1, ac - 1);
 
-	MergeInsertSorter.displayBothContainers();
 	MergeInsertSorter.sortBothContainers();
-	MergeInsertSorter.displayBothContainers();
-
+	return (0);
 }
