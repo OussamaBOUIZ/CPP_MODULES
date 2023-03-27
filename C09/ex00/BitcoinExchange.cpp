@@ -62,14 +62,14 @@ void	BitcoinExchange::_parseDataBaseFile ( void )
 			exit (0); // D BETTER THROW EXCEPTION
 		dateString = line.substr(0, sepIndex);
 		exchangeRateString = line.substr(sepIndex + 1);
-		this->_dataBase[dateString] = std::stod(exchangeRateString, nullptr);
+		this->_dataBase[dateString] = std::atof(exchangeRateString.c_str());
 	}
 }
 
 bool BitcoinExchange::_checkYearStringValidity ( string &yearString )
 { 
 	try {
-		int	yearAsNum = std::stoi(yearString);			
+		int	yearAsNum = std::atoi(yearString.c_str());			
 		if (yearAsNum < 2009 or yearAsNum > 2022)
 			return (false);
 	}
@@ -81,7 +81,7 @@ bool BitcoinExchange::_checkYearStringValidity ( string &yearString )
 bool BitcoinExchange::_checkMonthStringValidity ( string &monthString )
 {
 	try {
-		int	monthAsNum = std::stoi(monthString);			
+		int	monthAsNum = std::atoi(monthString.c_str());			
 		if (monthAsNum < 1 or monthAsNum > 12)
 			return (false);
 	}
@@ -93,7 +93,7 @@ bool BitcoinExchange::_checkMonthStringValidity ( string &monthString )
 bool BitcoinExchange::_checkDayStringValidity ( string &dayString )
 {
 	try {
-		int	dayAsNum = std::stoi(dayString);			
+		int	dayAsNum = std::atoi(dayString.c_str());			
 		if (dayAsNum < 1 or dayAsNum > 31)
 			return (false);
 	}
@@ -108,6 +108,11 @@ bool	BitcoinExchange::_checkDateValidity ( string &dateString )
 	string	yearString, monthString, dayString;
 	size_t	firstDashIndex, secondDashIndex;
 
+	if (dateString.size() != 10)
+		return (false);
+	for (size_t i = 0; i < dateString.size(); i++)
+		if (isdigit(dateString[i]) == 0 and dateString[i] != '-')
+			return (false);
 	firstDashIndex = dateString.find('-');
 	yearString = dateString.substr(0, firstDashIndex);
 	if (this->_checkYearStringValidity(yearString) == false)
@@ -125,10 +130,21 @@ bool	BitcoinExchange::_checkDateValidity ( string &dateString )
 bool	BitcoinExchange::_checkValueValidity ( string &valueString )
 {
 	double	value;
-	// std::string::size_type sz; 
+	
+
+	int pointOccurence = 0;
+	for (size_t i = 0; i < valueString.size(); i++)	{
+		if (valueString[i] == '.')
+			pointOccurence++;
+	if (pointOccurence > 1)
+	{
+		this->_errorMessage("");
+	}
 	
 	try {
-		value = std::stod(valueString, nullptr);
+		std::cout << "valueString : " << valueString << std::endl;
+		value = std::atof(valueString.c_str());
+		std::cout << "value : " << value << std::endl;
 	}
 	catch ( const std::invalid_argument& excep) {
 		this->_errorMessage("Not a number");
@@ -153,7 +169,7 @@ void	BitcoinExchange::_handleCurrentLine ( string &line )
 	size_t	sepIndex;
 	double	result = 0.0;
 
-	sepIndex = line.find('|');
+	sepIndex = line.find(" | "); // line.find(" | ")
 	if (sepIndex == std::string::npos)
 	{
 		this->_errorMessage("Bad input => " + line);
@@ -165,14 +181,14 @@ void	BitcoinExchange::_handleCurrentLine ( string &line )
 		this->_errorMessage("Bad Input => "+ dateString);
 		return ;
 	}
-	valueString = line.substr(sepIndex + 1);
+	valueString = line.substr(sepIndex + 3);
 	if (this->_checkValueValidity(valueString) == false)
 		return ;
-	std::map<string, double>::iterator	lowBoundIt;
+	std::map<string, double>::iterator	upBoundIt;
 
-	lowBoundIt = this->_dataBase.upper_bound(dateString);
-	lowBoundIt--;
-	result = lowBoundIt->second * std::stod(valueString, nullptr);
+	upBoundIt = this->_dataBase.upper_bound(dateString);
+	upBoundIt--;
+	result = upBoundIt->second * std::atof(valueString.c_str());
 	std::cout << dateString + " => " + valueString + " = " << result << std::endl;
 }
 
@@ -186,7 +202,7 @@ void	BitcoinExchange::displayDataBase ( void )
 		std::cout << "Date : " << it->first << " exchange : " << it->second << std::endl;
 		it++;
 	}
-}
+} 
 
 void	BitcoinExchange::displayBitcoinExchange ( void )
 {
