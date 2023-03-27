@@ -4,11 +4,14 @@
 /* ------------------ CANONICAL FORM ------------------- */
 /* ----------------------------------------------------- */
 
-RPN::RPN ( char	*argument )
+RPN::RPN ( char	*argument ) : _numberOfDigits(0), 
+							  _numberOfOperators(0)
+
 {
 	if (argument and *argument == 0)
 		errorMessage();
 	this->_argument = string(argument);
+
 }
 
 RPN::RPN ( void )
@@ -46,18 +49,22 @@ bool	RPN::_isOperator ( char c )
 
 bool	RPN::_isInvalidCharacter ( char c )
 {
-	if (this->_isOperator(c) == false and isdigit(c) == 0 and c != ' ')
+	if (this->_isOperator(c) == false and isdigit(c) == 0 and c != ' ' and c != '	')
 		return (false);
+	else if (this->_isOperator(c) == true )
+		this->_numberOfOperators++;
+	else if (isdigit(c))
+		this->_numberOfDigits++;
 	return (true);
 }
 
 void	RPN::_checkArgument ( void )
 {
 	for (size_t i = 0; i < this->_argument.size(); i++)
-	{
 		if (this->_isInvalidCharacter(this->_argument[i]) == false)
 			errorMessage();
-	}	
+	if (this->_numberOfDigits - this->_numberOfOperators != 1)
+		errorMessage();
 }
 
 int	RPN::_calculator ( int a, int b, char oper )
@@ -67,11 +74,16 @@ int	RPN::_calculator ( int a, int b, char oper )
 	else if (oper == '-')
 		return (a - b);
 	else if (oper == '/')
+	{
+		if (b == 0)
+			errorMessage();
 		return (a / b);
+	}
 	else if (oper == '*')
 		return (a * b);
 	return (0);
 }
+
 void	RPN::_performOperation ( char oper )
 {
 	int	firstOperand, secondOperand;
