@@ -35,9 +35,12 @@ class BitcoinExchange {
 /*
 	for each line in the input file we should  find the corresponding bitcoin price
 	and then return the value multiplied by the exchange rate found on the database
-	
+	2000-00-00
 	CASES: 
 		* Checking if the input date is valid
+			* Checking the length
+			* Checking if it contains a character diff than a digit or dash
+			* Checking if the date is borned properly.
 		* Checking if the value is either float or a positive number
 		* Checking if the value is respecting the range
 */

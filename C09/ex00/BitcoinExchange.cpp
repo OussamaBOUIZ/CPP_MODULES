@@ -90,6 +90,7 @@ bool BitcoinExchange::_checkMonthStringValidity ( string &monthString )
 	}
 	return (true);	
 }
+
 bool BitcoinExchange::_checkDayStringValidity ( string &dayString )
 {
 	try {
@@ -133,18 +134,24 @@ bool	BitcoinExchange::_checkValueValidity ( string &valueString )
 	
 
 	int pointOccurence = 0;
-	for (size_t i = 0; i < valueString.size(); i++)	{
+	for (size_t i = 0; i < valueString.size(); i++)
 		if (valueString[i] == '.')
 			pointOccurence++;
 	if (pointOccurence > 1)
 	{
-		this->_errorMessage("");
+		this->_errorMessage("invalid value");
+		return (false);
 	}
-	
+	for (size_t i = 0; i < valueString.size(); i++)
+	{
+		if (isdigit(valueString[i]) == 0 and valueString[i] != '.')
+		{
+			this->_errorMessage("invalid value");
+			return (false);
+		}
+	}
 	try {
-		std::cout << "valueString : " << valueString << std::endl;
 		value = std::atof(valueString.c_str());
-		std::cout << "value : " << value << std::endl;
 	}
 	catch ( const std::invalid_argument& excep) {
 		this->_errorMessage("Not a number");
@@ -169,6 +176,11 @@ void	BitcoinExchange::_handleCurrentLine ( string &line )
 	size_t	sepIndex;
 	double	result = 0.0;
 
+	if (line.size() == 0)
+	{
+		this->_errorMessage("Empty line");
+		return ;
+	}
 	sepIndex = line.find(" | "); // line.find(" | ")
 	if (sepIndex == std::string::npos)
 	{
