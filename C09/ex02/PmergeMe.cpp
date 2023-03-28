@@ -38,10 +38,19 @@ PmergeMe::PmergeMe ( const PmergeMe &obj )
 
 void	PmergeMe::_displayTheVector( void )
 {
-	for (std::vector<int>::iterator it = this->_vectorOfNums.begin();
-		 it != this->_vectorOfNums.end(); 
-		 it++)
-		std::cout << (*it) << " ";
+	if (this->_vectorOfNums.size() <= 10)
+	{
+		for (std::vector<int>::iterator it = this->_vectorOfNums.begin();
+			it != this->_vectorOfNums.end(); 
+			it++)
+			std::cout << (*it) << " ";
+	}
+	else
+	{
+		for (size_t i = 0; i < 5; i++)
+			std::cout << this->_vectorOfNums[i] << " ";
+		std::cout << "[...]";
+	}
 	std::cout << std::endl;
 }
 
@@ -54,19 +63,6 @@ void	PmergeMe::_displayTheVector( void )
 // 	std::cout << std::endl;
 // }
 
-float	PmergeMe::_countTimeDifference ( struct timeval startTime, struct timeval endTime)
-{
-
-	std::stringstream	aStringStream;
-	string				s;
-
-	aStringStream << (endTime.tv_sec - startTime.tv_sec);
-	aStringStream << ".";
-	aStringStream << (endTime.tv_usec - startTime.tv_usec);
-	aStringStream >> s;
-	std::cout << "std::atof(s.c_str()) : " << std::atof(s.c_str()) << std::endl;
-	return (std::atof(s.c_str()));
-}
 
 void	PmergeMe::_fillTheVector ( char	**arguments, int numOfArguments )
 {
@@ -112,7 +108,7 @@ void	PmergeMe::_sortThePairsInDeque (std::deque<std::pair<int, int> > &deq )
 			std::swap(deq[i].first, deq[i].second);
 }
 
-bool sortBySecond(const std::pair<int, int>& left, const std::pair<int, int>& right) {
+bool sortBasedOnLargest(const std::pair<int, int>& left, const std::pair<int, int>& right) {
     return left.second < right.second;
 }
 
@@ -137,7 +133,7 @@ void	PmergeMe::_sortVector ( void )
 		vectorOfPairs.push_back(std::make_pair(this->_vectorOfNums[i], this->_vectorOfNums[i + 1]));
 	// std::cout << std::endl;
 	this->_sortThePairsInVector(vectorOfPairs);
-	std::sort(vectorOfPairs.begin(), vectorOfPairs.end(), sortBySecond);
+	std::sort(vectorOfPairs.begin(), vectorOfPairs.end(), sortBasedOnLargest);
 	for (size_t i = 0; i < vectorOfPairs.size(); i++)
 		pend.push_back(vectorOfPairs[i].first);
 	for (size_t i = 0; i < vectorOfPairs.size(); i++)
@@ -155,13 +151,22 @@ void	PmergeMe::_sortVector ( void )
 		Sequence.insert(it, straggler);
 	}
 	std::cout << "After: ";
-	for (std::vector<int>::iterator it = Sequence.begin();
-		 it != Sequence.end(); 
-		 it++)
-		std::cout << (*it) << " ";
+	if (Sequence.size() <= 10)
+	{
+		for (std::vector<int>::iterator it = Sequence.begin();
+			it != Sequence.end(); 
+			it++)
+			std::cout << (*it) << " ";
+	}
+	else
+	{
+		for (size_t i = 0; i < 5; i++)
+			std::cout << Sequence[i] << " ";
+		std::cout << "[...]";
+	}
 	std::cout << std::endl;
 	gettimeofday(&endTime, 0);
-	this->_vectorTime =  this->_countTimeDifference(startTime, endTime);
+	this->_vectorTime =  endTime.tv_usec - startTime.tv_usec;
 }
 
 
@@ -185,7 +190,7 @@ void	PmergeMe::_sortDeque ( void )
 	for (size_t i = 0; i < this->_dequeOfNums.size() - 2; i += 2)
 		dequeOfPairs.push_back(std::make_pair(this->_dequeOfNums[i], this->_dequeOfNums[i + 1]));
 	this->_sortThePairsInDeque(dequeOfPairs);
-	std::sort(dequeOfPairs.begin(), dequeOfPairs.end(), sortBySecond);
+	std::sort(dequeOfPairs.begin(), dequeOfPairs.end(), sortBasedOnLargest);
 	for (size_t i = 0; i < dequeOfPairs.size(); i++)
 		pend.push_back(dequeOfPairs[i].first);
 	for (size_t i = 0; i < dequeOfPairs.size(); i++)
@@ -203,7 +208,7 @@ void	PmergeMe::_sortDeque ( void )
 		Sequence.insert(it, straggler);
 	}
 	gettimeofday(&endTime, 0);
-	this->_dequeTime =  this->_countTimeDifference(startTime, endTime);
+	this->_dequeTime =  endTime.tv_usec - startTime.tv_usec;
 }
 
 void	PmergeMe::displayBothContainers ( void )
@@ -222,8 +227,8 @@ void	PmergeMe::sortBothContainers ( void )
 	this->_displayTheVector();
 	this->_sortVector();
 	this->_sortDeque();
-	std::cout << "Time to process a range of " << this->_vectorOfNums.size() << " elements with std::vector :  " <<std::fixed << std::setprecision(5) <<  this->_vectorTime<< " us" << std::endl;
-	std::cout << "Time to process a range of " << this->_dequeOfNums.size() << " elements with std::deque :  " << std::fixed << std::setprecision(5) << this->_dequeTime<< " us" << std::endl;
+	std::cout << "Time to process a range of " << this->_vectorOfNums.size() << " elements with std::vector :  " <<  this->_vectorTime<< " us" << std::endl;
+	std::cout << "Time to process a range of " << this->_dequeOfNums.size() << " elements with std::deque :  " <<  this->_dequeTime<< " us" << std::endl;
 }
 
 /* ----------------------------------------------------- */
